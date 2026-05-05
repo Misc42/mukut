@@ -1,4 +1,4 @@
-# Chahani — चाहनी, हर मोड़ पर नज़र
+# Chahani — चाहाणि, हर मोड़ पर नज़र
 
 Landing page for **Chahani** — product 02 in the [Misc42 Labs](https://misc42labs.vercel.app/) portfolio.
 
