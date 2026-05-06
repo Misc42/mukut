@@ -4,7 +4,7 @@ Landing page for **Mukut** — product 02 in the [Misc42 Labs](https://misc42lab
 
 A clip-on safety module for any ISI-certified motorcycle helmet — dual rear cameras, live HUD, tri-radio mesh, cross-horizon SOS. v1 is being hand-built on perfboard and tested with a closed alpha of ~10 friends. Not on sale yet. No cloud, no subscription.
 
-**Live**: <mukut.app> (Vercel auto-deploys on every push to `main`).
+**Live**: <mukutsenses.com> (Vercel auto-deploys on every push to `main`).
 
 ## Files
 
