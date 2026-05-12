@@ -201,3 +201,24 @@
 .mv-credits li { padding: 4px 0; }
 .mv-credits a { color: var(--ink-muted); border-bottom: 1px dashed currentColor; }
 .mv-credits a:hover { color: var(--saffron); }
+
+.mv-fallback-banner {
+  position: absolute; left: 12px; right: 12px; bottom: 12px;
+  background: rgba(15,14,20,0.88);
+  color: var(--ink-muted);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px dashed var(--ink-faint);
+  font-size: 12px;
+  line-height: 1.4;
+  pointer-events: auto;
+}
+.mv-fallback-banner code {
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--surface);
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: var(--saffron);
+  font-size: 11px;
+}
+.mv-fallback-banner a { color: var(--saffron); border-bottom: 1px dashed currentColor; }

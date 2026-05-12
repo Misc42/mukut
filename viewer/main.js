@@ -18,9 +18,10 @@ import {
   tintMukutComponent,
   fitCameraToObject,
 } from "./scene.js";
-import { getLoader, loadGLB, loadMany, normalizeScale } from "./loader.js";
+import { getLoader, loadGLB, normalizeScale } from "./loader.js";
 import { attachComponent, detachAllComponents, renderAnchorGizmos } from "./anchors.js";
 import { initUI, bindHelmetPicker, showLoading, hideLoading, showError, showBlockFallback } from "./ui.js";
+import { createProceduralHelmet, createProceduralMukutComponent } from "./fallback.js";
 
 const HELMETS_JSON = "./data/helmets.json";
 const ANCHORS_JSON = "./data/anchors.json";
@@ -72,18 +73,18 @@ async function boot() {
   initUI(_state.helmetsDb);
   bindHelmetPicker((helmetId) => selectHelmet(helmetId, scene, camera, controls, loader, canvas));
 
-  const componentUrls = _state.helmetsDb.mukut_components.map(c => c.glb_path);
   showLoading(canvas, "Mukut module utha rahe hain...");
-  const componentObjs = await loadMany(componentUrls, loader);
-  _state.helmetsDb.mukut_components.forEach(c => {
-    const obj = componentObjs[c.glb_path];
-    if (obj) {
+  for (const c of _state.helmetsDb.mukut_components) {
+    let obj = null;
+    try {
+      obj = await loadGLB(c.glb_path, loader);
       tintMukutComponent(obj);
-      _state.components[c.anchor_key] = obj;
-    } else {
-      console.warn(`[mukut-viewer] missing Mukut component: ${c.id}`);
+    } catch (_err) {
+      console.info(`[mukut-viewer] using procedural fallback for ${c.id} (GLB not present at ${c.glb_path})`);
+      obj = createProceduralMukutComponent(c.id);
     }
-  });
+    _state.components[c.anchor_key] = obj;
+  }
   hideLoading(canvas);
 
   const firstHelmet = _state.helmetsDb.helmets[0];
@@ -112,16 +113,15 @@ async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
   }
 
   let helmetObj;
+  let usedFallback = false;
   try {
     helmetObj = await loadGLB(meta.glb_path, loader);
-  } catch (err) {
-    console.warn(`[mukut-viewer] failed to load ${meta.glb_path}`, err);
-    showError(canvas, `Couldn't load ${meta.display_name}. Showing different helmet.`);
-    hideLoading(canvas);
-    return;
+    normalizeScale(helmetObj, meta.shell_height_m);
+  } catch (_err) {
+    console.info(`[mukut-viewer] using procedural fallback helmet for ${helmetId} (GLB not present at ${meta.glb_path})`);
+    helmetObj = createProceduralHelmet(meta.shell_height_m);
+    usedFallback = true;
   }
-
-  normalizeScale(helmetObj, meta.shell_height_m);
   scene.add(helmetObj);
   _state.currentHelmet = helmetObj;
   _state.currentHelmetId = helmetId;
@@ -144,6 +144,9 @@ async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
 
   fitCameraToObject(camera, controls, helmetObj, 1.6);
   hideLoading(canvas);
+
+  const banner = document.getElementById("viewer-fallback-banner");
+  if (banner) banner.style.display = usedFallback ? "block" : "none";
 }
 
 function supportsWebGL() {
