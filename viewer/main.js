@@ -113,20 +113,23 @@ async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
   }
 
   let helmetObj;
+  let proceduralAnchors = null;
   let usedFallback = false;
   try {
     helmetObj = await loadGLB(meta.glb_path, loader);
     normalizeScale(helmetObj, meta.shell_height_m);
   } catch (_err) {
     console.info(`[mukut-viewer] using procedural fallback helmet for ${helmetId} (GLB not present at ${meta.glb_path})`);
-    helmetObj = createProceduralHelmet(meta.shell_height_m);
+    const proc = createProceduralHelmet(meta.shell_height_m);
+    helmetObj = proc.helmet;
+    proceduralAnchors = proc.anchors;
     usedFallback = true;
   }
   scene.add(helmetObj);
   _state.currentHelmet = helmetObj;
   _state.currentHelmetId = helmetId;
 
-  const helmetAnchors = _state.anchorsDb[helmetId]?.anchors;
+  const helmetAnchors = proceduralAnchors || _state.anchorsDb[helmetId]?.anchors;
   if (helmetAnchors) {
     _state.helmetsDb.mukut_components.forEach(c => {
       const comp = _state.components[c.anchor_key];
