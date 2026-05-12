@@ -302,6 +302,15 @@
     .scope-banner .wrap { flex-direction: column; align-items: flex-start; }
   }
 </style>
+<link rel="stylesheet" href="./viewer/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -457,6 +466,23 @@
   </div>
 </section>
 
+<section class="section viewer-section" id="viewer">
+  <div class="wrap">
+    <p class="section-eyebrow">Will it fit yours?</p>
+    <h2 class="section-title">Pick your helmet. See Mukut on it.</h2>
+    <p class="section-sub">Interactive 3D preview of how Mukut's modular components clip onto a few popular full-face helmets. Don't see yours? Tell us and we'll add it to the closed-alpha list.</p>
+
+    <div class="mv-wrap">
+      <div id="viewer-picker"></div>
+      <div class="mv-canvas-wrap">
+        <canvas id="viewer-canvas"></canvas>
+      </div>
+    </div>
+
+    <div id="viewer-credits"></div>
+  </div>
+</section>
+
 <section class="section" id="specs">
   <div class="wrap">
     <p class="section-eyebrow">Specs at a glance</p>
@@ -570,6 +596,7 @@
   </div>
 </section>
 
+<script type="module" src="./viewer/main.js"></script>
 </main>
 
 <footer class="foot">

@@ -1,0 +1,182 @@
+{
+  "_doc": "Helmet DB for the 3D viewer. Each entry maps a known full-face helmet model to its GLB asset + attribution. Mukut module components attach to the anchors in anchors.json. Block-fallback: helmets not in this list show the email-capture form.",
+  "_license_note": "All entries are CC-BY (Creative Commons Attribution) — attribution.author + source_url MUST be rendered in the viewer's credits panel.",
+  "helmets": [
+    {
+      "id": "shoei_gt_air_2",
+      "display_name": "Shoei GT-Air II",
+      "brand": "Shoei",
+      "segment": "premium",
+      "glb_path": "assets/helmets/shoei_gt_air_2.glb",
+      "thumbnail_path": "assets/helmets/shoei_gt_air_2_thumb.webp",
+      "shell_height_m": 0.282,
+      "attribution": {
+        "author": "hellmakerkain (Charpstar AB)",
+        "license": "CC-BY",
+        "source_url": "https://sketchfab.com/3d-models/shoei-gt-air-ii-970b0d29b77741a5a7b93e5ce1c492a7"
+      }
+    },
+    {
+      "id": "hjc_classic",
+      "display_name": "HJC (classic photogrammetry scan)",
+      "brand": "HJC",
+      "segment": "premium",
+      "glb_path": "assets/helmets/hjc_classic.glb",
+      "thumbnail_path": "assets/helmets/hjc_classic_thumb.webp",
+      "shell_height_m": 0.280,
+      "attribution": {
+        "author": "leadblacktech",
+        "license": "CC-BY",
+        "source_url": "https://sketchfab.com/3d-models/old-hjc-helmet-8c767f4487c04f83843bcdae41e74085"
+      }
+    },
+    {
+      "id": "arai_rx_7v",
+      "display_name": "Arai RX-7V",
+      "brand": "Arai",
+      "segment": "premium",
+      "glb_path": "assets/helmets/arai_rx_7v.glb",
+      "thumbnail_path": "assets/helmets/arai_rx_7v_thumb.webp",
+      "shell_height_m": 0.285,
+      "attribution": {
+        "author": "gav11",
+        "license": "CC-BY",
+        "source_url": "https://sketchfab.com/3d-models/arai-rx-7v-9ad59273159e47679d9ec6f6fcd14d30"
+      }
+    },
+    {
+      "id": "arai_quantic",
+      "display_name": "Arai Quantic (premium-European proxy)",
+      "brand": "Arai",
+      "segment": "premium",
+      "glb_path": "assets/helmets/arai_quantic.glb",
+      "thumbnail_path": "assets/helmets/arai_quantic_thumb.webp",
+      "shell_height_m": 0.280,
+      "attribution": {
+        "author": "gamaxa",
+        "license": "CC-BY",
+        "source_url": "https://sketchfab.com/3d-models/helmet-arai-quantic-grey-d3e121af2acc4be397983a5a4ee0e872"
+      }
+    },
+    {
+      "id": "bell_race_star_dlx",
+      "display_name": "Bell Race Star DLX",
+      "brand": "Bell",
+      "segment": "premium",
+      "glb_path": "assets/helmets/bell_race_star_dlx.glb",
+      "thumbnail_path": "assets/helmets/bell_race_star_dlx_thumb.webp",
+      "shell_height_m": 0.275,
+      "attribution": {
+        "author": "gamaxa",
+        "license": "CC-BY",
+        "source_url": "https://sketchfab.com/3d-models/bell-race-star-flex-dlx-helmet-a79be38e5898479693ba35f288ea86d5"
+      }
+    },
+    {
+      "id": "ls2_ff393",
+      "display_name": "LS2 FF393 Convert",
+      "brand": "LS2",
+      "segment": "mass-market",
+      "glb_path": "assets/helmets/ls2_ff393.glb",
+      "thumbnail_path": "assets/helmets/ls2_ff393_thumb.webp",
+      "shell_height_m": 0.278,
+      "attribution": {
+        "author": "daancoppens",
+        "license": "CC-BY",
+        "source_url": "https://sketchfab.com/3d-models/pbr-motorcycle-helm-ls2-ff393-e742b3acbbb24ed89b9d917ef20d8082"
+      }
+    },
+    {
+      "id": "scorpion_exo_r420",
+      "display_name": "Scorpion EXO-R420",
+      "brand": "Scorpion",
+      "segment": "mass-market",
+      "glb_path": "assets/helmets/scorpion_exo_r420.glb",
+      "thumbnail_path": "assets/helmets/scorpion_exo_r420_thumb.webp",
+      "shell_height_m": 0.282,
+      "attribution": {
+        "author": "harrymat",
+        "license": "CC-BY",
+        "source_url": "https://sketchfab.com/3d-models/scorpion-exo-r420-helmet-5786cf0502f14528ba018cd597e7dc49"
+      }
+    },
+    {
+      "id": "scorpion_exo_combat",
+      "display_name": "Scorpion EXO-COMBAT",
+      "brand": "Scorpion",
+      "segment": "mass-market",
+      "glb_path": "assets/helmets/scorpion_exo_combat.glb",
+      "thumbnail_path": "assets/helmets/scorpion_exo_combat_thumb.webp",
+      "shell_height_m": 0.280,
+      "attribution": {
+        "author": "Marcin.Adamski",
+        "license": "CC-BY",
+        "source_url": "https://sketchfab.com/3d-models/scorpion-exo-combat"
+      }
+    },
+    {
+      "id": "generic_isi_class_1",
+      "display_name": "ISI-Certified Budget Class (Vega / Studds proxy)",
+      "brand": "Generic ISI-class",
+      "segment": "india-budget",
+      "glb_path": "assets/helmets/generic_isi_class_1.glb",
+      "thumbnail_path": "assets/helmets/generic_isi_class_1_thumb.webp",
+      "shell_height_m": 0.275,
+      "attribution": {
+        "author": "ramyouny",
+        "license": "CC-BY",
+        "source_url": "https://sketchfab.com/3d-models/motorcycle-helmet-racing-helmet-b2ead0381b914a88810a8be9fc13f47a"
+      },
+      "disclaimer": "Generic full-face proxy for ISI-certified budget helmets popular in India (Vega Crux DX, Studds Thunder, Studds Ninja, Steelbird SBA-1). Your exact helmet may differ in proportions; fit-anchor positions are approximate."
+    },
+    {
+      "id": "generic_isi_class_2",
+      "display_name": "ISI-Certified Budget Class · variant 2",
+      "brand": "Generic ISI-class",
+      "segment": "india-budget",
+      "glb_path": "assets/helmets/generic_isi_class_2.glb",
+      "thumbnail_path": "assets/helmets/generic_isi_class_2_thumb.webp",
+      "shell_height_m": 0.272,
+      "attribution": {
+        "author": "TBD — second CC-BY generic full-face from Sketchfab",
+        "license": "CC-BY",
+        "source_url": "TBD"
+      },
+      "disclaimer": "Second proxy for India-budget segment. Pair with generic_isi_class_1 to cover slight proportional variance (slimmer / taller shells)."
+    }
+  ],
+  "mukut_components": [
+    {
+      "id": "chin_housing",
+      "display_name": "Chin housing (electronics + 2× rear cameras)",
+      "glb_path": "assets/mukut/chin_housing.glb",
+      "anchor_key": "chin",
+      "color_hint": "saffron",
+      "description": "Houses the ESP32-S3, audio DSP, BC127 BT chip, INMP441 mics, and both rear-facing SC3336 fisheye cameras (cameras peek out the rear face)."
+    },
+    {
+      "id": "forehead_hud",
+      "display_name": "Forehead HUD (Sharp Memory LCD 1.3\")",
+      "glb_path": "assets/mukut/forehead_hud.glb",
+      "anchor_key": "forehead_hud",
+      "color_hint": "saffron",
+      "description": "1-bit dithered rear feed + motion-triggered blind-spot alert glyphs. Mirrored L/R via firmware setting."
+    },
+    {
+      "id": "rear_pod",
+      "display_name": "Rear-top battery pod",
+      "glb_path": "assets/mukut/rear_pod.glb",
+      "anchor_key": "rear_pod",
+      "color_hint": "saffron",
+      "description": "1500 mAh internal cell + optional POGO bridge to a body-mounted 10,000 mAh pack."
+    },
+    {
+      "id": "antenna",
+      "display_name": "Antenna cluster (tri-radio)",
+      "glb_path": "assets/mukut/antenna.glb",
+      "anchor_key": "antenna",
+      "color_hint": "saffron",
+      "description": "Stacked: ESP-NOW LR + SX1280 FLRC + SX1262 SOS — three vertical whips with PCB-trace impedance match."
+    }
+  ]
+}

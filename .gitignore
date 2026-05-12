@@ -1,3 +1,9 @@
 .vercel/
 .DS_Store
 node_modules/
+
+# 3D viewer asset binaries — manually downloaded per-machine, not committed
+assets/helmets/*.glb
+assets/helmets/*.webp
+assets/mukut/*.glb
+assets/env/*.hdr
