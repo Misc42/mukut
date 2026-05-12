@@ -1,8 +1,7 @@
 .DS_Store
 node_modules/
 
-# 3D viewer asset binaries — manually downloaded per-machine, not committed
-assets/helmets/*.glb
-assets/helmets/*.webp
-assets/mukut/*.glb
-assets/env/*.hdr
+# Note: 3D viewer asset binaries DO commit — GitHub Pages needs them in
+# the repo to serve them. assets/_demo/damaged_helmet.glb (Khronos CC-BY
+# placeholder) ships with the repo; real per-helmet GLBs land in
+# assets/helmets/*.glb and assets/mukut/*.glb as Tanay downloads them.

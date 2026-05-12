@@ -21,7 +21,7 @@ import {
 import { getLoader, loadGLB, normalizeScale } from "./loader.js";
 import { attachComponent, detachAllComponents, renderAnchorGizmos } from "./anchors.js";
 import { initUI, bindHelmetPicker, showLoading, hideLoading, showError, showBlockFallback } from "./ui.js";
-import { createProceduralHelmet, createProceduralMukutComponent } from "./fallback.js";
+import { loadDemoHelmet, createProceduralMukutComponent } from "./fallback.js";
 
 const HELMETS_JSON = "./data/helmets.json";
 const ANCHORS_JSON = "./data/anchors.json";
@@ -113,23 +113,28 @@ async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
   }
 
   let helmetObj;
-  let proceduralAnchors = null;
   let usedFallback = false;
   try {
     helmetObj = await loadGLB(meta.glb_path, loader);
     normalizeScale(helmetObj, meta.shell_height_m);
   } catch (_err) {
-    console.info(`[mukut-viewer] using procedural fallback helmet for ${helmetId} (GLB not present at ${meta.glb_path})`);
-    const proc = createProceduralHelmet(meta.shell_height_m);
-    helmetObj = proc.helmet;
-    proceduralAnchors = proc.anchors;
-    usedFallback = true;
+    console.info(`[mukut-viewer] using demo placeholder for ${helmetId} (real GLB not yet at ${meta.glb_path})`);
+    try {
+      helmetObj = await loadDemoHelmet(loader);
+      normalizeScale(helmetObj, meta.shell_height_m);
+      usedFallback = true;
+    } catch (err) {
+      console.error("[mukut-viewer] demo placeholder also failed to load", err);
+      showError(canvas, "Couldn't load 3D viewer assets. Check console for details.");
+      hideLoading(canvas);
+      return;
+    }
   }
   scene.add(helmetObj);
   _state.currentHelmet = helmetObj;
   _state.currentHelmetId = helmetId;
 
-  const helmetAnchors = proceduralAnchors || _state.anchorsDb[helmetId]?.anchors;
+  const helmetAnchors = _state.anchorsDb[helmetId]?.anchors || _state.anchorsDb._default?.anchors;
   if (helmetAnchors) {
     _state.helmetsDb.mukut_components.forEach(c => {
       const comp = _state.components[c.anchor_key];

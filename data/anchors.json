@@ -1,9 +1,9 @@
 {
   "_doc": "Anchor coordinates per helmet — where each Mukut component attaches. Conventions: origin = base-ring center (where helmet meets neck), +Y up, +Z forward (face direction), units = meters. pos = anchor position; normal = outward surface normal at that point; tangent_up = surface-up direction (perpendicular to normal). Three.js builds the rotation basis at runtime: x = cross(tangent_up, normal), y = tangent_up, z = normal.",
-  "_authoring": "Hand-eyeball in the browser with ?debug=1 — gizmos render at each anchor, drag-tune live, copy coords here. Re-tune per helmet as needed; runtime hot-reloads if served via fetch.",
+  "_authoring": "Hand-eyeball in the browser with ?debug=1 — gizmos render at each anchor, drag-tune live, copy coords here.",
   "_status": "v1 stubs — all coordinates below are PLACEHOLDERS based on a 0.28m-tall full-face shell archetype. Replace with eyeballed values per helmet during ingest.",
   "_anchor_keys": ["chin", "forehead_hud", "rear_pod", "antenna"],
-  "shoei_gt_air_2": {
+  "_default": {
     "anchors": {
       "chin":         { "pos": [0.000,  0.045,  0.138], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
       "forehead_hud": { "pos": [0.000,  0.205,  0.122], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
@@ -11,76 +11,13 @@
       "antenna":      { "pos": [0.000,  0.245, -0.040], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
     }
   },
-  "hjc_classic": {
-    "anchors": {
-      "chin":         { "pos": [0.000,  0.043,  0.136], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
-      "forehead_hud": { "pos": [0.000,  0.203,  0.120], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
-      "rear_pod":     { "pos": [0.000,  0.196, -0.103], "normal": [0.000,  0.55, -0.83], "tangent_up": [0.000,  0.83,  0.55] },
-      "antenna":      { "pos": [0.000,  0.243, -0.038], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
-    }
-  },
-  "arai_rx_7v": {
-    "anchors": {
-      "chin":         { "pos": [0.000,  0.048,  0.140], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
-      "forehead_hud": { "pos": [0.000,  0.208,  0.124], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
-      "rear_pod":     { "pos": [0.000,  0.200, -0.107], "normal": [0.000,  0.55, -0.83], "tangent_up": [0.000,  0.83,  0.55] },
-      "antenna":      { "pos": [0.000,  0.247, -0.041], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
-    }
-  },
-  "arai_quantic": {
-    "anchors": {
-      "chin":         { "pos": [0.000,  0.043,  0.137], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
-      "forehead_hud": { "pos": [0.000,  0.203,  0.121], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
-      "rear_pod":     { "pos": [0.000,  0.196, -0.104], "normal": [0.000,  0.55, -0.83], "tangent_up": [0.000,  0.83,  0.55] },
-      "antenna":      { "pos": [0.000,  0.243, -0.039], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
-    }
-  },
-  "bell_race_star_dlx": {
-    "anchors": {
-      "chin":         { "pos": [0.000,  0.040,  0.134], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
-      "forehead_hud": { "pos": [0.000,  0.200,  0.118], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
-      "rear_pod":     { "pos": [0.000,  0.193, -0.102], "normal": [0.000,  0.55, -0.83], "tangent_up": [0.000,  0.83,  0.55] },
-      "antenna":      { "pos": [0.000,  0.239, -0.037], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
-    }
-  },
-  "ls2_ff393": {
-    "anchors": {
-      "chin":         { "pos": [0.000,  0.042,  0.135], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
-      "forehead_hud": { "pos": [0.000,  0.202,  0.119], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
-      "rear_pod":     { "pos": [0.000,  0.194, -0.103], "normal": [0.000,  0.55, -0.83], "tangent_up": [0.000,  0.83,  0.55] },
-      "antenna":      { "pos": [0.000,  0.241, -0.038], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
-    }
-  },
-  "scorpion_exo_r420": {
-    "anchors": {
-      "chin":         { "pos": [0.000,  0.045,  0.138], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
-      "forehead_hud": { "pos": [0.000,  0.205,  0.122], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
-      "rear_pod":     { "pos": [0.000,  0.198, -0.105], "normal": [0.000,  0.55, -0.83], "tangent_up": [0.000,  0.83,  0.55] },
-      "antenna":      { "pos": [0.000,  0.245, -0.040], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
-    }
-  },
-  "scorpion_exo_combat": {
-    "anchors": {
-      "chin":         { "pos": [0.000,  0.044,  0.137], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
-      "forehead_hud": { "pos": [0.000,  0.204,  0.121], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
-      "rear_pod":     { "pos": [0.000,  0.197, -0.104], "normal": [0.000,  0.55, -0.83], "tangent_up": [0.000,  0.83,  0.55] },
-      "antenna":      { "pos": [0.000,  0.244, -0.039], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
-    }
-  },
-  "generic_isi_class_1": {
-    "anchors": {
-      "chin":         { "pos": [0.000,  0.040,  0.132], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
-      "forehead_hud": { "pos": [0.000,  0.198,  0.116], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
-      "rear_pod":     { "pos": [0.000,  0.190, -0.100], "normal": [0.000,  0.55, -0.83], "tangent_up": [0.000,  0.83,  0.55] },
-      "antenna":      { "pos": [0.000,  0.237, -0.036], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
-    }
-  },
-  "generic_isi_class_2": {
-    "anchors": {
-      "chin":         { "pos": [0.000,  0.038,  0.130], "normal": [0.000, -0.35,  0.94], "tangent_up": [0.000,  0.94,  0.35] },
-      "forehead_hud": { "pos": [0.000,  0.195,  0.115], "normal": [0.000,  0.42,  0.91], "tangent_up": [0.000,  0.91, -0.42] },
-      "rear_pod":     { "pos": [0.000,  0.188, -0.099], "normal": [0.000,  0.55, -0.83], "tangent_up": [0.000,  0.83,  0.55] },
-      "antenna":      { "pos": [0.000,  0.234, -0.035], "normal": [0.000,  1.00,  0.00], "tangent_up": [0.000,  0.00, -1.00] }
-    }
-  }
+  "bell_moto_iii":        { "anchors": { "chin": { "pos": [0,0.045,0.138], "normal": [0,-0.35,0.94], "tangent_up": [0,0.94,0.35] }, "forehead_hud": { "pos": [0,0.205,0.122], "normal": [0,0.42,0.91], "tangent_up": [0,0.91,-0.42] }, "rear_pod": { "pos": [0,0.198,-0.105], "normal": [0,0.55,-0.83], "tangent_up": [0,0.83,0.55] }, "antenna": { "pos": [0,0.245,-0.040], "normal": [0,1,0], "tangent_up": [0,0,-1] } } },
+  "hjc_classic":          { "anchors": { "chin": { "pos": [0,0.043,0.136], "normal": [0,-0.35,0.94], "tangent_up": [0,0.94,0.35] }, "forehead_hud": { "pos": [0,0.203,0.120], "normal": [0,0.42,0.91], "tangent_up": [0,0.91,-0.42] }, "rear_pod": { "pos": [0,0.196,-0.103], "normal": [0,0.55,-0.83], "tangent_up": [0,0.83,0.55] }, "antenna": { "pos": [0,0.243,-0.038], "normal": [0,1,0], "tangent_up": [0,0,-1] } } },
+  "arai_motorcycle":      { "anchors": { "chin": { "pos": [0,0.048,0.140], "normal": [0,-0.35,0.94], "tangent_up": [0,0.94,0.35] }, "forehead_hud": { "pos": [0,0.208,0.124], "normal": [0,0.42,0.91], "tangent_up": [0,0.91,-0.42] }, "rear_pod": { "pos": [0,0.200,-0.107], "normal": [0,0.55,-0.83], "tangent_up": [0,0.83,0.55] }, "antenna": { "pos": [0,0.247,-0.041], "normal": [0,1,0], "tangent_up": [0,0,-1] } } },
+  "torc_t1":              { "anchors": { "chin": { "pos": [0,0.043,0.137], "normal": [0,-0.35,0.94], "tangent_up": [0,0.94,0.35] }, "forehead_hud": { "pos": [0,0.203,0.121], "normal": [0,0.42,0.91], "tangent_up": [0,0.91,-0.42] }, "rear_pod": { "pos": [0,0.196,-0.104], "normal": [0,0.55,-0.83], "tangent_up": [0,0.83,0.55] }, "antenna": { "pos": [0,0.243,-0.039], "normal": [0,1,0], "tangent_up": [0,0,-1] } } },
+  "akabhi_moto":          { "anchors": { "chin": { "pos": [0,0.040,0.132], "normal": [0,-0.35,0.94], "tangent_up": [0,0.94,0.35] }, "forehead_hud": { "pos": [0,0.198,0.116], "normal": [0,0.42,0.91], "tangent_up": [0,0.91,-0.42] }, "rear_pod": { "pos": [0,0.190,-0.100], "normal": [0,0.55,-0.83], "tangent_up": [0,0.83,0.55] }, "antenna": { "pos": [0,0.237,-0.036], "normal": [0,1,0], "tangent_up": [0,0,-1] } } },
+  "ls2_with_texture":     { "anchors": { "chin": { "pos": [0,0.042,0.135], "normal": [0,-0.35,0.94], "tangent_up": [0,0.94,0.35] }, "forehead_hud": { "pos": [0,0.202,0.119], "normal": [0,0.42,0.91], "tangent_up": [0,0.91,-0.42] }, "rear_pod": { "pos": [0,0.194,-0.103], "normal": [0,0.55,-0.83], "tangent_up": [0,0.83,0.55] }, "antenna": { "pos": [0,0.241,-0.038], "normal": [0,1,0], "tangent_up": [0,0,-1] } } },
+  "scorpion_exo500":      { "anchors": { "chin": { "pos": [0,0.045,0.138], "normal": [0,-0.35,0.94], "tangent_up": [0,0.94,0.35] }, "forehead_hud": { "pos": [0,0.205,0.122], "normal": [0,0.42,0.91], "tangent_up": [0,0.91,-0.42] }, "rear_pod": { "pos": [0,0.198,-0.105], "normal": [0,0.55,-0.83], "tangent_up": [0,0.83,0.55] }, "antenna": { "pos": [0,0.245,-0.040], "normal": [0,1,0], "tangent_up": [0,0,-1] } } },
+  "ramyouny_generic":     { "anchors": { "chin": { "pos": [0,0.038,0.130], "normal": [0,-0.35,0.94], "tangent_up": [0,0.94,0.35] }, "forehead_hud": { "pos": [0,0.195,0.115], "normal": [0,0.42,0.91], "tangent_up": [0,0.91,-0.42] }, "rear_pod": { "pos": [0,0.188,-0.099], "normal": [0,0.55,-0.83], "tangent_up": [0,0.83,0.55] }, "antenna": { "pos": [0,0.234,-0.035], "normal": [0,1,0], "tangent_up": [0,0,-1] } } },
+  "scorpion_exo_combat":  { "anchors": { "chin": { "pos": [0,0.044,0.137], "normal": [0,-0.35,0.94], "tangent_up": [0,0.94,0.35] }, "forehead_hud": { "pos": [0,0.204,0.121], "normal": [0,0.42,0.91], "tangent_up": [0,0.91,-0.42] }, "rear_pod": { "pos": [0,0.197,-0.104], "normal": [0,0.55,-0.83], "tangent_up": [0,0.83,0.55] }, "antenna": { "pos": [0,0.244,-0.039], "normal": [0,1,0], "tangent_up": [0,0,-1] } } }
 }

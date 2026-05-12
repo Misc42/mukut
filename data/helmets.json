@@ -1,19 +1,21 @@
 {
-  "_doc": "Helmet DB for the 3D viewer. Each entry maps a known full-face helmet model to its GLB asset + attribution. Mukut module components attach to the anchors in anchors.json. Block-fallback: helmets not in this list show the email-capture form.",
-  "_license_note": "All entries are CC-BY (Creative Commons Attribution) — attribution.author + source_url MUST be rendered in the viewer's credits panel.",
+  "_doc": "Helmet DB for the 3D viewer. All slots verified via Sketchfab v3 API as `isDownloadable: true` (see audit 2026-05-13). Each entry maps to a GLB asset under assets/helmets/<id>.glb. The viewer falls back to assets/_demo/damaged_helmet.glb (Khronos CC-BY 4.0) for any slot whose real GLB isn't committed yet.",
+  "_license_note": "Mix of CC-BY (8 slots) and Sketchfab Free Standard (1 slot — ramyouny). All require attribution in the viewer credits panel except Free Standard which doesn't require attribution but we credit anyway.",
+  "_manual_download_workflow": "1. Click each source_url 2. Sketchfab login + Download GLB 3. Run gltf-transform optimize input.glb output.glb --compress draco --texture-compress webp --simplify 0.5 4. Drop optimized output as assets/helmets/<id>.glb 5. git push — Pages auto-rebuild swaps demo placeholder for real GLB",
   "helmets": [
     {
-      "id": "shoei_gt_air_2",
-      "display_name": "Shoei GT-Air II",
-      "brand": "Shoei",
-      "segment": "premium",
-      "glb_path": "assets/helmets/shoei_gt_air_2.glb",
-      "thumbnail_path": "assets/helmets/shoei_gt_air_2_thumb.webp",
+      "id": "bell_moto_iii",
+      "display_name": "Bell MOTO III (full-face)",
+      "brand": "Bell",
+      "segment": "mass-market",
+      "glb_path": "assets/helmets/bell_moto_iii.glb",
       "shell_height_m": 0.282,
       "attribution": {
-        "author": "hellmakerkain (Charpstar AB)",
+        "author": "Netovanniy",
         "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/shoei-gt-air-ii-970b0d29b77741a5a7b93e5ce1c492a7"
+        "source_url": "https://sketchfab.com/3d-models/moto-iii-helmet-7c4b35c5cf8f43aa89924008971b90cd",
+        "sketchfab_uid": "7c4b35c5cf8f43aa89924008971b90cd",
+        "raw_faces": 218976
       }
     },
     {
@@ -22,127 +24,122 @@
       "brand": "HJC",
       "segment": "premium",
       "glb_path": "assets/helmets/hjc_classic.glb",
-      "thumbnail_path": "assets/helmets/hjc_classic_thumb.webp",
       "shell_height_m": 0.280,
       "attribution": {
         "author": "leadblacktech",
         "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/old-hjc-helmet-8c767f4487c04f83843bcdae41e74085"
+        "source_url": "https://sketchfab.com/3d-models/old-hjc-helmet-8c767f4487c04f83843bcdae41e74085",
+        "sketchfab_uid": "8c767f4487c04f83843bcdae41e74085",
+        "raw_faces": 422568
       }
     },
     {
-      "id": "arai_rx_7v",
-      "display_name": "Arai RX-7V",
+      "id": "arai_motorcycle",
+      "display_name": "Arai Motorcycle Helmet",
       "brand": "Arai",
       "segment": "premium",
-      "glb_path": "assets/helmets/arai_rx_7v.glb",
-      "thumbnail_path": "assets/helmets/arai_rx_7v_thumb.webp",
+      "glb_path": "assets/helmets/arai_motorcycle.glb",
       "shell_height_m": 0.285,
       "attribution": {
-        "author": "gav11",
+        "author": "prohavnese1976",
         "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/arai-rx-7v-9ad59273159e47679d9ec6f6fcd14d30"
-      }
+        "source_url": "https://sketchfab.com/3d-models/arai-motorcycle-helmet-e46811f7185b4db6b763c97f419cbb68",
+        "sketchfab_uid": "e46811f7185b4db6b763c97f419cbb68",
+        "raw_faces": 494476
+      },
+      "verify_note": "Verify in browser before download — duplicate-faceCount with another author's upload (possible re-upload)."
     },
     {
-      "id": "arai_quantic",
-      "display_name": "Arai Quantic (premium-European proxy)",
-      "brand": "Arai",
-      "segment": "premium",
-      "glb_path": "assets/helmets/arai_quantic.glb",
-      "thumbnail_path": "assets/helmets/arai_quantic_thumb.webp",
+      "id": "torc_t1",
+      "display_name": "Torc T1 Helmet",
+      "brand": "Torc",
+      "segment": "mass-market",
+      "glb_path": "assets/helmets/torc_t1.glb",
       "shell_height_m": 0.280,
       "attribution": {
-        "author": "gamaxa",
+        "author": "Netovanniy",
         "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/helmet-arai-quantic-grey-d3e121af2acc4be397983a5a4ee0e872"
+        "source_url": "https://sketchfab.com/3d-models/t1-helmet-dd5bce9ea5ef408e96858fd0e5c93421",
+        "sketchfab_uid": "dd5bce9ea5ef408e96858fd0e5c93421",
+        "raw_faces": 236104
       }
     },
     {
-      "id": "bell_race_star_dlx",
-      "display_name": "Bell Race Star DLX",
-      "brand": "Bell",
-      "segment": "premium",
-      "glb_path": "assets/helmets/bell_race_star_dlx.glb",
-      "thumbnail_path": "assets/helmets/bell_race_star_dlx_thumb.webp",
+      "id": "akabhi_moto",
+      "display_name": "Generic Full-face Helmet",
+      "brand": "Generic",
+      "segment": "india-budget",
+      "glb_path": "assets/helmets/akabhi_moto.glb",
       "shell_height_m": 0.275,
       "attribution": {
-        "author": "gamaxa",
+        "author": "akabhi006",
         "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/bell-race-star-flex-dlx-helmet-a79be38e5898479693ba35f288ea86d5"
-      }
+        "source_url": "https://sketchfab.com/3d-models/moto-helmet-69f6a3214221419b90af4fc76ca97370",
+        "sketchfab_uid": "69f6a3214221419b90af4fc76ca97370",
+        "raw_faces": 261916
+      },
+      "disclaimer": "Generic proxy — covers India-budget full-face segment (Vega, Studds, Steelbird) when those brands' CC-BY CADs are unavailable."
     },
     {
-      "id": "ls2_ff393",
-      "display_name": "LS2 FF393 Convert",
+      "id": "ls2_with_texture",
+      "display_name": "LS2 Helmet",
       "brand": "LS2",
       "segment": "mass-market",
-      "glb_path": "assets/helmets/ls2_ff393.glb",
-      "thumbnail_path": "assets/helmets/ls2_ff393_thumb.webp",
+      "glb_path": "assets/helmets/ls2_with_texture.glb",
       "shell_height_m": 0.278,
       "attribution": {
-        "author": "daancoppens",
+        "author": "iyerlogonadhan",
         "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/pbr-motorcycle-helm-ls2-ff393-e742b3acbbb24ed89b9d917ef20d8082"
+        "source_url": "https://sketchfab.com/3d-models/myhelmetwithtexture-8867d6a53e764d00b2eb11627451543d",
+        "sketchfab_uid": "8867d6a53e764d00b2eb11627451543d",
+        "raw_faces": 646946
       }
     },
     {
-      "id": "scorpion_exo_r420",
-      "display_name": "Scorpion EXO-R420",
+      "id": "scorpion_exo500",
+      "display_name": "Scorpion EXO-500",
       "brand": "Scorpion",
       "segment": "mass-market",
-      "glb_path": "assets/helmets/scorpion_exo_r420.glb",
-      "thumbnail_path": "assets/helmets/scorpion_exo_r420_thumb.webp",
+      "glb_path": "assets/helmets/scorpion_exo500.glb",
       "shell_height_m": 0.282,
       "attribution": {
-        "author": "harrymat",
+        "author": "sylque",
         "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/scorpion-exo-r420-helmet-5786cf0502f14528ba018cd597e7dc49"
+        "source_url": "https://sketchfab.com/3d-models/helmet-scorpion-exo500-7547c74ac8884c029356a4c00a6636ee",
+        "sketchfab_uid": "7547c74ac8884c029356a4c00a6636ee",
+        "raw_faces": 688826
       }
+    },
+    {
+      "id": "ramyouny_generic",
+      "display_name": "Racing-style Full-face (generic)",
+      "brand": "Generic",
+      "segment": "india-budget",
+      "glb_path": "assets/helmets/ramyouny_generic.glb",
+      "shell_height_m": 0.275,
+      "attribution": {
+        "author": "ramyouny",
+        "license": "Sketchfab Free Standard",
+        "source_url": "https://sketchfab.com/3d-models/motorcycle-helmet-racing-helmet-b2ead0381b914a88810a8be9fc13f47a",
+        "sketchfab_uid": "b2ead0381b914a88810a8be9fc13f47a",
+        "raw_faces": 134942
+      },
+      "disclaimer": "Tags include both 'f1' and 'motorcycle' — eyeball the Sketchfab thumbnail before commit to confirm it's actually motorcycle full-face, not F1 open-cockpit helmet."
     },
     {
       "id": "scorpion_exo_combat",
       "display_name": "Scorpion EXO-COMBAT",
       "brand": "Scorpion",
-      "segment": "mass-market",
+      "segment": "premium",
       "glb_path": "assets/helmets/scorpion_exo_combat.glb",
-      "thumbnail_path": "assets/helmets/scorpion_exo_combat_thumb.webp",
       "shell_height_m": 0.280,
       "attribution": {
         "author": "Marcin.Adamski",
         "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/scorpion-exo-combat"
+        "source_url": "https://sketchfab.com/3d-models/scorpion-exo-combat-8eae9a2c17324592bad0133821c2b92a",
+        "sketchfab_uid": "8eae9a2c17324592bad0133821c2b92a",
+        "raw_faces": 342572
       }
-    },
-    {
-      "id": "generic_isi_class_1",
-      "display_name": "ISI-Certified Budget Class (Vega / Studds proxy)",
-      "brand": "Generic ISI-class",
-      "segment": "india-budget",
-      "glb_path": "assets/helmets/generic_isi_class_1.glb",
-      "thumbnail_path": "assets/helmets/generic_isi_class_1_thumb.webp",
-      "shell_height_m": 0.275,
-      "attribution": {
-        "author": "ramyouny",
-        "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/motorcycle-helmet-racing-helmet-b2ead0381b914a88810a8be9fc13f47a"
-      },
-      "disclaimer": "Generic full-face proxy for ISI-certified budget helmets popular in India (Vega Crux DX, Studds Thunder, Studds Ninja, Steelbird SBA-1). Your exact helmet may differ in proportions; fit-anchor positions are approximate."
-    },
-    {
-      "id": "generic_isi_class_2",
-      "display_name": "ISI-Certified Budget Class · variant 2",
-      "brand": "Generic ISI-class",
-      "segment": "india-budget",
-      "glb_path": "assets/helmets/generic_isi_class_2.glb",
-      "thumbnail_path": "assets/helmets/generic_isi_class_2_thumb.webp",
-      "shell_height_m": 0.272,
-      "attribution": {
-        "author": "TBD — second CC-BY generic full-face from Sketchfab",
-        "license": "CC-BY",
-        "source_url": "TBD"
-      },
-      "disclaimer": "Second proxy for India-budget segment. Pair with generic_isi_class_1 to cover slight proportional variance (slimmer / taller shells)."
     }
   ],
   "mukut_components": [

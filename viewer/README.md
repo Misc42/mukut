@@ -1,149 +1,141 @@
 # Mukut 3D Helmet Compatibility Viewer
 
-Interactive Three.js viewer that lets a visitor pick their helmet and see Mukut's modular components attached at their correct anchor positions. Answers "will Mukut fit MY helmet?" visually.
+Interactive Three.js viewer for the Mukut landing page. User picks a helmet, sees Mukut's modular components attached at parametric anchor points.
 
-## Status — v1 scaffold
+## Status
 
 | Piece | State |
 |---|---|
-| Three.js code (scene, loader, anchors, ui) | ✅ Written (~700 LoC) |
-| `data/helmets.json` — 10 helmet DB | ✅ Written, all attributions in place |
-| `data/anchors.json` — anchor coordinates | ⚠ **Placeholder coords from 0.28m archetype** — eyeball-tune per helmet in browser dev-mode |
-| `assets/helmets/*.glb` — 10 helmet GLBs | 🔴 **Manual download required** (see checklist below) |
-| `assets/mukut/*.glb` — 4 Mukut component GLBs | 🔴 **Manual generate required** from `mechanical/openscad/*.scad` in the helmet repo |
-| `assets/env/studio_small.hdr` — HDR env map | 🔴 **Manual download required** (Poly Haven, CC0) |
-| Integration into `index.html` | ✅ Done — new `<section id="viewer">` between `#how` and `#specs` |
+| Three.js code (scene, loader, anchors, ui, fallback) | ✅ Written (~900 LoC) |
+| `data/helmets.json` — 9 verified Sketchfab-downloadable slots | ✅ All slots audited via Sketchfab v3 API |
+| `data/anchors.json` — anchor coordinates | ⚠ **Placeholder coords** — eyeball-tune per helmet via `?debug=1` |
+| `assets/_demo/damaged_helmet.glb` — universal placeholder (Khronos CC-BY) | ✅ Committed (3.6 MB) |
+| `assets/helmets/<id>.glb` — 9 real motorcycle helmet GLBs | 🔴 **Manual Sketchfab download required** |
+| `assets/mukut/*.glb` — 4 Mukut component GLBs | 🔴 Procedural placeholder used (saffron primitives) until OpenSCAD → STL → GLB pipeline runs |
+| `assets/env/studio_small.hdr` — HDR env map | 🟡 Optional — viewer works without it, lighting falls back to AmbientLight + DirectionalLight |
+| Live page | ✅ https://misc42.github.io/mukut/ — viewer section mid-page |
 
-## Step 1 — Helmet GLBs (manual download, ~30-45 min)
+## How the fallback chain works
 
-Sketchfab requires login + per-model click. Tanay downloads, drops into `assets/helmets/<id>.glb`. License is CC-BY for all 10 → attribution panel renders automatically from `helmets.json`.
+1. User picks helmet → viewer tries to load `assets/helmets/<id>.glb`
+2. If 404 → loads `assets/_demo/damaged_helmet.glb` + shows "Demo placeholder" banner
+3. If THAT also fails → renders error message
+4. Same anchors apply in all cases (eyeball-tune per real helmet later)
 
-| `<id>.glb` | Source (click to download) | Expected size |
-|---|---|---|
-| `shoei_gt_air_2.glb` | [Sketchfab — Shoei GT-Air II by hellmakerkain](https://sketchfab.com/3d-models/shoei-gt-air-ii-970b0d29b77741a5a7b93e5ce1c492a7) | ~3-6 MB |
-| `hjc_classic.glb` | [Sketchfab — Old HJC Helmet by leadblacktech](https://sketchfab.com/3d-models/old-hjc-helmet-8c767f4487c04f83843bcdae41e74085) | ~8-15 MB (scan, dense) |
-| `arai_rx_7v.glb` | [Sketchfab — Arai RX-7V by gav11](https://sketchfab.com/3d-models/arai-rx-7v-9ad59273159e47679d9ec6f6fcd14d30) | ~4-8 MB |
-| `arai_quantic.glb` | [Sketchfab — Arai Quantic by gamaxa](https://sketchfab.com/3d-models/helmet-arai-quantic-grey-d3e121af2acc4be397983a5a4ee0e872) | ~1-3 MB (low poly) |
-| `bell_race_star_dlx.glb` | [Sketchfab — Bell Race Star DLX by gamaxa](https://sketchfab.com/3d-models/bell-race-star-flex-dlx-helmet-a79be38e5898479693ba35f288ea86d5) | ~1-2 MB (low poly) |
-| `ls2_ff393.glb` | [Sketchfab — LS2 FF393 by daancoppens](https://sketchfab.com/3d-models/pbr-motorcycle-helm-ls2-ff393-e742b3acbbb24ed89b9d917ef20d8082) | ~1-2 MB (game res) |
-| `scorpion_exo_r420.glb` | [Sketchfab — Scorpion EXO-R420 by harrymat](https://sketchfab.com/3d-models/scorpion-exo-r420-helmet-5786cf0502f14528ba018cd597e7dc49) | ~5-9 MB |
-| `scorpion_exo_combat.glb` | [Sketchfab — Scorpion EXO-COMBAT by Marcin.Adamski](https://sketchfab.com/3d-models/scorpion-exo-combat) | ~5-9 MB |
-| `generic_isi_class_1.glb` | [Sketchfab — Motorcycle Helmet (ramyouny)](https://sketchfab.com/3d-models/motorcycle-helmet-racing-helmet-b2ead0381b914a88810a8be9fc13f47a) | ~2-4 MB |
-| `generic_isi_class_2.glb` | TBD — pick a different CC-BY generic full-face from Sketchfab; update `helmets.json` attribution | ~2-4 MB |
+So the viewer always renders SOMETHING — visitor never sees a broken state.
 
-**Before you download each:** click into the model page, verify the license badge says "Download · CC Attribution" (NOT CC-BY-SA, NOT CC-BY-NC, NOT CC-BY-ND for v1). If a license differs from what `helmets.json` claims, update the JSON immediately.
+## Manual helmet GLB download (9 slots, ~1-2 hr Tanay-time)
 
-**Compression** (recommended for mobile load times):
+⚠ **All 9 URLs below are Sketchfab-API-verified as downloadable (`isDownloadable: true`).** The previous batch of URLs (Shoei GT-Air II by hellmakerkain etc.) was **75% non-downloadable preview-only** — those are dead, don't reuse.
+
+For each slot below:
+1. Click the Sketchfab URL
+2. Login to Sketchfab (free account)
+3. Click "Download 3D Model" → pick **glTF** format → download `.glb`
+4. Run `gltf-transform optimize input.glb output.glb --compress draco --texture-compress webp --simplify 0.5` (decimates ~60% — these models are heavy, 200k-700k faces)
+5. Save as `assets/helmets/<id>.glb` per the table below
+6. `git add assets/helmets/<id>.glb && git commit -m "ingest <brand> helmet" && git push`
+7. Pages auto-rebuild; refresh viewer — your real GLB swaps the demo placeholder
+
+| `<id>.glb` (target filename) | Brand · Model | Sketchfab URL | Author | License | Raw faces |
+|---|---|---|---|---|---|
+| `bell_moto_iii.glb` | Bell · MOTO III | [`7c4b35c5...`](https://sketchfab.com/3d-models/moto-iii-helmet-7c4b35c5cf8f43aa89924008971b90cd) | Netovanniy | CC-BY | 219k |
+| `hjc_classic.glb` | HJC · classic scan | [`8c767f44...`](https://sketchfab.com/3d-models/old-hjc-helmet-8c767f4487c04f83843bcdae41e74085) | leadblacktech | CC-BY | 422k |
+| `arai_motorcycle.glb` | Arai · Motorcycle | [`e46811f7...`](https://sketchfab.com/3d-models/arai-motorcycle-helmet-e46811f7185b4db6b763c97f419cbb68) | prohavnese1976 | CC-BY | 494k |
+| `torc_t1.glb` | Torc · T1 | [`dd5bce9e...`](https://sketchfab.com/3d-models/t1-helmet-dd5bce9ea5ef408e96858fd0e5c93421) | Netovanniy | CC-BY | 236k |
+| `akabhi_moto.glb` | Generic · India-budget proxy | [`69f6a321...`](https://sketchfab.com/3d-models/moto-helmet-69f6a3214221419b90af4fc76ca97370) | akabhi006 | CC-BY | 262k |
+| `ls2_with_texture.glb` | LS2 | [`8867d6a5...`](https://sketchfab.com/3d-models/myhelmetwithtexture-8867d6a53e764d00b2eb11627451543d) | iyerlogonadhan | CC-BY | 647k |
+| `scorpion_exo500.glb` | Scorpion · EXO-500 | [`7547c74a...`](https://sketchfab.com/3d-models/helmet-scorpion-exo500-7547c74ac8884c029356a4c00a6636ee) | sylque | CC-BY | 689k |
+| `ramyouny_generic.glb` | Generic · racing | [`b2ead038...`](https://sketchfab.com/3d-models/motorcycle-helmet-racing-helmet-b2ead0381b914a88810a8be9fc13f47a) | ramyouny | **Free Standard** | 135k |
+| `scorpion_exo_combat.glb` | Scorpion · EXO-COMBAT | [`8eae9a2c...`](https://sketchfab.com/3d-models/scorpion-exo-combat-8eae9a2c17324592bad0133821c2b92a) | Marcin.Adamski | CC-BY | 343k |
+
+**License gotchas:**
+- 8 of 9 are CC-BY → attribution rendered in viewer credits panel automatically (already wired)
+- 1 is Sketchfab "Free Standard" → no attribution required by license, but we credit anyway for consistency
+- **Verify the license badge on each Sketchfab page before download** — these were API-checked but per-page check is the final word
+
+**Pre-flight per slot:**
+- Open the Sketchfab page in browser
+- Confirm the model thumbnail shows a **full-face motorcycle helmet** (NOT modular flip-up, NOT F1 open-cockpit, NOT bicycle, NOT toy)
+- Confirm "Download 3D Model" button visible (not greyed out)
+- Confirm license badge says "CC Attribution" or "Free Standard" — not CC-BY-SA / CC-BY-NC / CC-BY-ND / All Rights Reserved
+
+## Mukut component GLBs (4 modules, ~1-2 hr Tanay-time)
+
+Source `.scad` files in `Misc42/helmet:mechanical/openscad/`:
+- `helmet_module.scad` → chin housing geometry
+- `battery_enclosure.scad` → rear pod
+- (forehead HUD + antenna cluster — author placeholder geometry in any tool, simple boxes / cylinders)
+
+Convert pipeline:
 ```bash
-# Install once
-npm i -g @gltf-transform/cli
+sudo apt install openscad             # one-time
+openscad -o tmp/chin_housing.stl --render mechanical/openscad/helmet_module.scad
 
-# Per helmet, Draco + Meshopt + KTX2 squeeze
-gltf-transform optimize input.glb output.glb --compress draco --texture-compress webp
-```
-Target: each helmet `<2 MB` after compression. The scan-based ones (HJC, Shoei GT-Air II) will need aggressive decimation — use `gltf-transform simplify` to drop to ~80k tris.
-
-## Step 2 — Mukut component GLBs (manual generate, ~1-2 hr)
-
-Source `.scad` files live in `Misc42/helmet:mechanical/openscad/`:
-- `magnetic_base.scad` → produces the chin housing footprint
-- `helmet_module.scad` → the overall module + electronics shell
-- `battery_enclosure.scad` → the rear pod
-
-Convert each to GLB:
-```bash
-# Install openscad
-sudo apt install openscad           # Linux
-brew install openscad                # macOS
-
-# Render each .scad → STL
-openscad -o chin_housing.stl --render mechanical/openscad/helmet_module.scad
-openscad -o rear_pod.stl       --render mechanical/openscad/battery_enclosure.scad
-# magnetic_base.scad is mount geometry, not a component — skip
-
-# Convert STL → GLB (Three.js loads GLB natively; STL works too via STLLoader
-# but GLB embeds materials cleanly)
-npm i -g obj2gltf
-# Or use Blender headless if you want PBR:
-blender -b -P bake_to_glb.py -- chin_housing.stl chin_housing.glb
-```
-
-For `forehead_hud.glb` and `antenna.glb` (not in OpenSCAD yet) — author placeholder geometry in Blender or any free tool, ~10 min each. Sharp Memory LCD 1.3" = box `33 × 18 × 8 mm`; antenna cluster = three vertical `60 × 12 mm` cylinders stacked.
-
-Drop final GLBs into `assets/mukut/`:
-- `chin_housing.glb`
-- `forehead_hud.glb`
-- `rear_pod.glb`
-- `antenna.glb`
-
-Mounting convention (enforce, or anchor attachment breaks): **each component's mounting face at local origin, +Z = outward normal, +Y = up.** The Three.js `attachComponent()` function in `viewer/anchors.js` rotates the component into the helmet anchor frame assuming this convention.
-
-## Step 3 — HDR env map (1 file, 30 sec)
-
-Download from Poly Haven (CC0):
-```bash
-mkdir -p assets/env
-curl -L 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/studio_small_03_1k.hdr' -o assets/env/studio_small.hdr
+# STL → GLB
+npm i -g gltf-transform-cli
+gltf-transform copy tmp/chin_housing.stl assets/mukut/chin_housing.glb
 ```
 
-This single 1k HDR (~1 MB) makes PBR materials sing without needing 5 dynamic directional lights. PMREM-processed once at boot.
+Drop final GLBs into `~/misc/mukut/assets/mukut/`:
+- `chin_housing.glb` · `forehead_hud.glb` · `rear_pod.glb` · `antenna.glb`
 
-## Step 4 — Eyeball anchor coordinates (browser dev-mode)
+**Authoring convention (enforce):** Each component's mounting face at local origin, +Z = outward normal, +Y = up. Get this wrong once and every helmet shows a chin module pointing into the rider's nose.
 
-Open `https://misc42.github.io/mukut/?debug=1` (or local dev: `python3 -m http.server` in repo root, then `http://localhost:8000/?debug=1`).
+Until real Mukut GLBs are dropped, viewer renders saffron-tinted primitive boxes/cylinders sized to OpenSCAD-source dimensions (chin housing 62×30×38 mm with 2 black camera lens dots; forehead HUD 33×18×8 mm with white LCD plane; rear pod 80×25×48 mm; antenna 3 stacked whips at 6/4.5/3 cm).
 
-For each of the 10 helmets:
+## HDR env map (optional)
+
+```bash
+curl -L 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/studio_small_03_1k.hdr' \
+  -o assets/env/studio_small.hdr
+```
+
+License: CC0 (public domain). 1k resolution, ~1 MB. Drop in place — viewer auto-picks up on next page load. Without it, lighting falls back to AmbientLight + DirectionalLight (looks fine, slightly less PBR pop).
+
+## Anchor coordinates — eyeball-tune in browser
+
+Open `https://misc42.github.io/mukut/?debug=1` (or local: `python3 -m http.server` from repo root, then `http://localhost:8000/?debug=1`).
+
+For each of the 9 helmets:
 1. Pick the helmet from the picker
-2. Axes gizmos render at each anchor — chin / forehead_hud / rear_pod / antenna
-3. Each Mukut component is positioned at its anchor — see if it visually lands on the right surface
-4. If off: open `data/anchors.json`, tweak the `pos` / `normal` / `tangent_up` for that helmet's anchor, save, refresh browser
-5. Iterate ~5 min per helmet × 10 = ~50 min total
+2. Axes gizmos render at each anchor (chin / forehead_hud / rear_pod / antenna)
+3. Each Mukut component positions at its anchor — see if it visually lands on the right surface
+4. If off: open `data/anchors.json`, tweak `pos` / `normal` / `tangent_up` for that helmet's anchor, save, refresh
+5. Iterate ~5 min per helmet × 9 = ~45 min total
 
-Coordinate system reminder:
+Coordinate system:
 - Origin = helmet base-ring center (where it meets neck)
-- +Y = up
-- +Z = forward (face direction)
-- Units = meters
-- `pos` = absolute coords of the anchor point on the shell surface
+- +Y = up, +Z = forward (face direction), units = meters
+- `pos` = absolute coords of anchor point on shell surface
 - `normal` = outward surface normal at that point (unit vector)
 - `tangent_up` = surface-up direction (perpendicular to normal, points roughly toward crown)
-
-## Step 5 — Commit + push
-
-```bash
-git add data/ viewer/ assets/ index.html
-git commit -m "Add 3D helmet compatibility viewer — Three.js parametric anchor attachment"
-git push origin main
-# GitHub Pages auto-builds in ~30-60 s; live at misc42.github.io/mukut/
-```
 
 ## Local dev
 
 ```bash
-# Static server from repo root
+cd ~/misc/mukut
 python3 -m http.server 8000
 # Open http://localhost:8000/
 ```
 
-The viewer uses ES modules + importmap → no build step. Three.js loads from jsdelivr CDN. Refresh after each `anchors.json` edit; no hot-reload but the JSON re-fetches on each pick.
+ES modules + importmap, no build step.
 
 ## Troubleshooting
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| Black canvas | WebGL init failed | Check console; ensure WebGL is enabled (not Intel old GPU on Linux without driver) |
-| Helmet loads but Mukut components nowhere visible | Anchors stub coords don't match helmet origin | Add `?debug=1`, see if gizmos render; if not, anchors.json entry missing or helmet origin wrong |
-| Mukut component points wrong way | GLB authored without `+Z = mounting normal` convention | Re-author in Blender (rotate the mounting face to +Z=forward) |
-| Anchor gizmo visible but component off-place | `normal` + `tangent_up` not perpendicular | Run `Vector3.cross()` math in console; eyeball-tweak until perpendicular |
-| Sketchfab GLB 404 in console | Asset not in `assets/helmets/` | Re-download manually from Sketchfab URL in `helmets.json` |
-| Cross-origin error on HDR | CORS blocking Poly Haven domain (rare) | Download locally, serve from `assets/env/` |
+| Black canvas | WebGL init failed | Check console; ensure GPU drivers OK |
+| Demo helmet renders but I expect my real one | Real GLB not in `assets/helmets/<id>.glb` | Manual download per checklist above, commit, push |
+| Helmet loads but Mukut components nowhere visible | Anchors stub coords don't match this specific helmet's origin | `?debug=1` mode, see if gizmos render; if not, anchors.json entry missing or helmet origin wrong |
+| Mukut component points wrong way | Mukut GLB authored without `+Z = mounting normal` convention | Re-author in Blender (rotate the mounting face to +Z=forward) |
+| All helmets render the SAME placeholder | Real helmet GLBs not yet committed; demo fallback is active for every slot | Expected. Download the 9 GLBs per table above |
 
 ## Future work (v1.5+)
 
 - AR mode via `<model-viewer>` shim for iOS Quick Look (USDZ pipeline)
-- Wireframe toggle for "x-ray" view inside helmet
-- Exploded view animation (lerp components along anchor normals)
-- Shareable URLs: `?helmet=shoei-gt-air-2`
-- Visual-regression CI via Puppeteer + pixelmatch
-- Blender Python add-on for anchor authoring (currently hand-edit JSON)
-- Real Mukut PBR renders (currently saffron-tinted OpenSCAD geometry)
+- Wireframe / exploded view toggles
+- Shareable URLs: `?helmet=scorpion_exo_combat`
+- Visual-regression CI (Puppeteer + pixelmatch)
+- Anchor authoring via Blender Python add-on (currently hand-edit JSON)
+- Real Mukut PBR renders (currently saffron-tinted primitives)
