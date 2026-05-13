@@ -22,7 +22,44 @@ const DEMO_HELMET_PATH = "./assets/_demo/motorcycle_helmet.glb";
 export async function loadDemoHelmet(loader) {
   const helmet = await loadGLB(DEMO_HELMET_PATH, loader);
   helmet.userData.isDemo = true;
+  fixWebARrocksAGVMaterials(helmet);
   return helmet;
+}
+
+/**
+ * The WebAR.rocks AGV helmet ships with every material set to
+ * alphaMode=BLEND + doubleSided=true — even the opaque shell / strap /
+ * leather / inside. BLEND mode makes Three.js render them in the
+ * transparent pass, where depthWrite is false by default, so back faces
+ * of double-sided meshes punch through front faces as the camera
+ * rotates ("see-through sections"). Fix: force opaque + single-sided
+ * on every material whose name does NOT contain "glass" (visor needs to
+ * stay translucent).
+ */
+function fixWebARrocksAGVMaterials(root) {
+  root.traverse(child => {
+    if (!child.isMesh || !child.material) return;
+    const mats = Array.isArray(child.material) ? child.material : [child.material];
+    mats.forEach(m => {
+      const name = (m.name || "").toLowerCase();
+      const isGlass = name.includes("glass") || name.includes("visor");
+      if (isGlass) {
+        m.transparent = true;
+        m.opacity = 0.55;
+        m.depthWrite = false;
+        m.side = THREE.DoubleSide;
+        m.alphaTest = 0;
+      } else {
+        m.transparent = false;
+        m.opacity = 1.0;
+        m.depthWrite = true;
+        m.depthTest = true;
+        m.side = THREE.FrontSide;
+        m.alphaTest = 0;
+      }
+      m.needsUpdate = true;
+    });
+  });
 }
 
 export function createProceduralMukutComponent(componentId) {
