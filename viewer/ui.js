@@ -110,8 +110,13 @@ function renderModelGrid(grid, helmets) {
     label.textContent = h.display_name;
 
     const conf = document.createElement("span");
-    conf.className = "mv-conf mv-conf-not-in-db";
-    conf.textContent = "Not in DB yet";
+    if (h.is_claim_matched === true) {
+      conf.className = "mv-conf mv-conf-claim-matched";
+      conf.textContent = "Designer claim-matched";
+    } else {
+      conf.className = "mv-conf mv-conf-not-in-db";
+      conf.textContent = "Not in DB yet";
+    }
 
     card.appendChild(thumb);
     card.appendChild(label);
