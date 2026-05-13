@@ -20,8 +20,8 @@ import {
 } from "./scene.js";
 import { getLoader, loadGLB, normalizeScale } from "./loader.js";
 import { attachComponent, detachAllComponents, renderAnchorGizmos } from "./anchors.js";
-import { initUI, bindHelmetPicker, showLoading, hideLoading, showError, showBlockFallback } from "./ui.js";
-import { loadDemoHelmet, createProceduralMukutComponent } from "./fallback.js";
+import { initUI, bindHelmetPicker, showLoading, hideLoading, showError, showBlockFallback, showHelmetNotInDB, hideNotInDB } from "./ui.js";
+import { loadGenericDemoHelmet, createProceduralMukutComponent } from "./fallback.js";
 
 const HELMETS_JSON = "./data/helmets.json";
 const ANCHORS_JSON = "./data/anchors.json";
@@ -87,10 +87,6 @@ async function boot() {
   }
   hideLoading(canvas);
 
-  const firstHelmet = _state.helmetsDb.helmets[0];
-  if (firstHelmet) {
-    await selectHelmet(firstHelmet.id, scene, camera, controls, loader, canvas);
-  }
 }
 
 async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
@@ -113,28 +109,41 @@ async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
   }
 
   let helmetObj;
-  let usedFallback = false;
+  let isGenericDemo = false;
   try {
     helmetObj = await loadGLB(meta.glb_path, loader);
     normalizeScale(helmetObj, meta.shell_height_m);
   } catch (_err) {
-    console.info(`[mukut-viewer] using demo placeholder for ${helmetId} (real GLB not yet at ${meta.glb_path})`);
-    try {
-      helmetObj = await loadDemoHelmet(loader, meta);
-      normalizeScale(helmetObj, meta.shell_height_m);
-      usedFallback = true;
-    } catch (err) {
-      console.error("[mukut-viewer] demo placeholder also failed to load", err);
-      showError(canvas, "Couldn't load 3D viewer assets. Check console for details.");
-      hideLoading(canvas);
-      return;
-    }
+    console.info(`[mukut-viewer] ${helmetId} not in DB — real GLB missing at ${meta.glb_path}`);
+    hideLoading(canvas);
+    const banner = document.getElementById("viewer-fallback-banner");
+    if (banner) banner.style.display = "none";
+    showHelmetNotInDB(canvas, meta, async () => {
+      hideNotInDB(canvas);
+      showLoading(canvas, "Generic Mukut fit preview load kar rahe hain...");
+      try {
+        const demo = await loadGenericDemoHelmet(loader);
+        normalizeScale(demo, meta.shell_height_m);
+        await mountHelmet(demo, helmetId, true, scene, camera, controls, canvas);
+      } catch (err) {
+        console.error("[mukut-viewer] generic demo load failed", err);
+        showError(canvas, "Demo preview load failed.");
+        hideLoading(canvas);
+      }
+    });
+    return;
   }
+  await mountHelmet(helmetObj, helmetId, false, scene, camera, controls, canvas);
+}
+
+async function mountHelmet(helmetObj, helmetId, isGenericDemo, scene, camera, controls, canvas) {
   scene.add(helmetObj);
   _state.currentHelmet = helmetObj;
   _state.currentHelmetId = helmetId;
 
-  const helmetAnchors = _state.anchorsDb[helmetId]?.anchors || _state.anchorsDb._default?.anchors;
+  const helmetAnchors = isGenericDemo
+    ? _state.anchorsDb._default?.anchors
+    : (_state.anchorsDb[helmetId]?.anchors || _state.anchorsDb._default?.anchors);
   if (helmetAnchors) {
     _state.helmetsDb.mukut_components.forEach(c => {
       const comp = _state.components[c.anchor_key];
@@ -154,7 +163,7 @@ async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
   hideLoading(canvas);
 
   const banner = document.getElementById("viewer-fallback-banner");
-  if (banner) banner.style.display = usedFallback ? "block" : "none";
+  if (banner) banner.style.display = isGenericDemo ? "block" : "none";
 }
 
 function supportsWebGL() {

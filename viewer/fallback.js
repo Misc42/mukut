@@ -26,91 +26,32 @@ import { loadGLB } from "./loader.js";
 
 const SAFFRON = 0xE8B339;
 
-const DEMO_VARIANTS = {
-  agv: {
-    path: "./assets/_demo/motorcycle_helmet.glb",
-    needsMaterialFix: true,
-    needsTint: false,
-  },
-  dainese: {
-    path: "./assets/_demo/dainese_scan.glb",
-    needsMaterialFix: false,
-    needsTint: true,
-  },
-  rynfkn: {
-    path: "./assets/_demo/rynfkn_motorcycle.glb",
-    needsMaterialFix: false,
-    needsTint: false,
-  },
-  oga_racing: {
-    path: "./assets/_demo/oga_racing.glb",
-    needsMaterialFix: false,
-    needsTint: false,
-  },
-  premium: {
-    path: "./assets/_demo/sceneview_premium.glb",
-    needsMaterialFix: false,
-    needsTint: false,
-  },
-  ai_sport: {
-    path: "./assets/_demo/helmet_sport.glb",
-    needsMaterialFix: false,
-    needsTint: false,
-  },
-  ai_indian_commuter: {
-    path: "./assets/_demo/helmet_indian_commuter.glb",
-    needsMaterialFix: false,
-    needsTint: false,
-  },
-  ai_racing: {
-    path: "./assets/_demo/helmet_racing.glb",
-    needsMaterialFix: false,
-    needsTint: false,
-  },
-  ai_modular: {
-    path: "./assets/_demo/helmet_modular.glb",
-    needsMaterialFix: false,
-    needsTint: false,
-  },
-  ai_offroad: {
-    path: "./assets/_demo/helmet_offroad.glb",
-    needsMaterialFix: false,
-    needsTint: false,
-  },
+/**
+ * Single explicit demo helmet — loaded only on a deliberate user click of
+ * the "Show generic Mukut fit preview" button (not as an automatic
+ * fallback per brand pill). The brand pill click path now shows an
+ * honest "Helmet not in DB" message instead of pretending a generic
+ * helmet is the brand's actual CAD.
+ *
+ * Other GLBs in assets/_demo/ remain committed but unused at runtime —
+ * available for future swap if needed.
+ */
+const GENERIC_DEMO = {
+  path: "./assets/_demo/motorcycle_helmet.glb",
+  needsMaterialFix: true,
+  label: "Generic AGV-modeled full-face (demo only)",
 };
 
-const BRAND_HELMET_MAP = {
-  Bell: "premium",
-  Arai: "premium",
-  AXOR: "ai_sport",
-  SMK: "ai_modular",
-  "Royal Enfield": "ai_offroad",
-  Torc: "agv",
-  Scorpion: "agv",
-  HJC: "dainese",
-  LS2: "dainese",
-  Studds: "ai_indian_commuter",
-  Vega: "rynfkn",
-  Steelbird: "ai_racing",
-  Generic: "oga_racing",
-};
-
-const DEFAULT_VARIANT = "agv";
-
-function pickVariant(meta) {
-  if (!meta || !meta.brand) return DEFAULT_VARIANT;
-  return BRAND_HELMET_MAP[meta.brand] || DEFAULT_VARIANT;
+export async function loadGenericDemoHelmet(loader) {
+  const helmet = await loadGLB(GENERIC_DEMO.path, loader);
+  helmet.userData.isDemo = true;
+  helmet.userData.demoLabel = GENERIC_DEMO.label;
+  if (GENERIC_DEMO.needsMaterialFix) fixWebARrocksAGVMaterials(helmet);
+  return helmet;
 }
 
-export async function loadDemoHelmet(loader, meta) {
-  const variantKey = pickVariant(meta);
-  const variant = DEMO_VARIANTS[variantKey];
-  const helmet = await loadGLB(variant.path, loader);
-  helmet.userData.isDemo = true;
-  helmet.userData.demoVariant = variantKey;
-  if (variant.needsMaterialFix) fixWebARrocksAGVMaterials(helmet);
-  if (variant.needsTint) applyBareGeometryTint(helmet);
-  return helmet;
+export async function loadDemoHelmet(loader, _meta) {
+  return loadGenericDemoHelmet(loader);
 }
 
 function applyBareGeometryTint(root) {

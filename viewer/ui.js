@@ -101,17 +101,8 @@ function renderModelGrid(grid, helmets) {
     label.textContent = h.display_name;
 
     const conf = document.createElement("span");
-    const isProxy = h.is_proxy === true;
-    if (isProxy) {
-      conf.className = "mv-conf mv-conf-proxy";
-      conf.textContent = "Proxy form-factor";
-    } else if (h.segment === "india-budget" || h.segment === "india-premium") {
-      conf.className = "mv-conf mv-conf-estimated";
-      conf.textContent = "~80% Estimated";
-    } else {
-      conf.className = "mv-conf mv-conf-verified";
-      conf.textContent = "98% Verified";
-    }
+    conf.className = "mv-conf mv-conf-not-in-db";
+    conf.textContent = "Not in DB yet";
 
     card.appendChild(thumb);
     card.appendChild(label);
@@ -171,6 +162,37 @@ function renderCreditsPanel() {
       <ul>${helmetItems}</ul>
     </details>
   `;
+}
+
+export function showHelmetNotInDB(canvas, meta, onShowDemo) {
+  const wrap = canvas.parentElement;
+  let ov = wrap.querySelector(".mv-notindb");
+  if (!ov) {
+    ov = document.createElement("div");
+    ov.className = "mv-overlay mv-notindb";
+    wrap.appendChild(ov);
+  }
+  ov.innerHTML = `
+    <div class="mv-notindb-card">
+      <p class="mv-notindb-eyebrow">Helmet not in DB yet</p>
+      <h3 class="mv-notindb-title">${escapeHtml(meta.display_name)}</h3>
+      <p class="mv-notindb-body">Iska real CAD abhi public domain mein available nahi hai. Hum brand-specific CADs manually source kar rahe hain — drop ya tum bata sakte ho kaunsa helmet hai.</p>
+      <div class="mv-notindb-actions">
+        <button class="mv-notindb-demo-btn" type="button">Generic Mukut fit preview dikhao →</button>
+      </div>
+      <p class="mv-notindb-fineprint">Generic preview ek demo helmet pe Mukut clip karke dikhata hai — your helmet shape may differ slightly.</p>
+    </div>
+  `;
+  ov.style.display = "flex";
+  const btn = ov.querySelector(".mv-notindb-demo-btn");
+  if (btn) btn.addEventListener("click", () => {
+    if (onShowDemo) onShowDemo();
+  });
+}
+
+export function hideNotInDB(canvas) {
+  const ov = canvas.parentElement?.querySelector(".mv-notindb");
+  if (ov) ov.style.display = "none";
 }
 
 export function showLoading(canvas, message) {
