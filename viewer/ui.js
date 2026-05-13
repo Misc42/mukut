@@ -115,6 +115,8 @@ function renderModelGrid(grid, helmets) {
     });
     grid.appendChild(card);
   });
+  const firstCard = grid.querySelector(".mv-model");
+  if (firstCard) firstCard.classList.add("mv-model-active");
 }
 
 function showInlineEmailCapture(container) {

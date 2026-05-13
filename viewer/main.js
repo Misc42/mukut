@@ -87,6 +87,10 @@ async function boot() {
   }
   hideLoading(canvas);
 
+  const firstHelmet = _state.helmetsDb.helmets[0];
+  if (firstHelmet) {
+    await selectHelmet(firstHelmet.id, scene, camera, controls, loader, canvas);
+  }
 }
 
 async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
