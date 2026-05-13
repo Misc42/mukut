@@ -1,20 +1,16 @@
 /**
- * Asset fallbacks when a helmet GLB is not yet present in the repo.
+ * Asset fallbacks for the 3D helmet viewer.
  *
- * Two demo placeholders ship in assets/_demo/ — each brand-pill picks
- * one of them so the viewer shows visual variety across helmets even
- * before per-helmet brand GLBs are committed:
+ * Brand pill click path: when a real per-brand GLB doesn't exist in
+ * assets/helmets/<id>.glb, main.js shows a "Helmet not in DB" overlay —
+ * no automatic fake-CAD substitution. The user has to deliberately click
+ * the "Generic Mukut fit preview" button to trigger loadGenericDemoHelmet,
+ * which loads ONE explicit demo (WebAR.rocks AGV motorcycle helmet, MIT,
+ * 4.13 MB, full PBR with chrome visor + leather strap).
  *
- *   - motorcycle_helmet.glb  — WebAR.rocks AGV touring/sport, MIT,
- *                              4.13 MB, full PBR (chrome visor, leather
- *                              strap, stitch detail)
- *   - dainese_scan.glb       — Printables #502088 by RandyMay, CC0,
- *                              7.1 MB, photogrammetry scan of a
- *                              Dainese-style helmet, bare geometry
- *                              (no UVs / textures) — runtime applies
- *                              a matte gray plastic material
- *
- * Brand → variant assignment in BRAND_HELMET_MAP below.
+ * Other helmet GLBs in assets/_demo/ stay committed for possible future
+ * use (preview gallery, variant switcher) but are not referenced from
+ * runtime code.
  *
  * Mukut component fallback: procedural saffron-tinted primitives at
  *   OpenSCAD-source dimensions. Mounting face at local origin with
