@@ -87,9 +87,10 @@ async function boot() {
   }
   hideLoading(canvas);
 
-  const firstHelmet = _state.helmetsDb.helmets[0];
+  const claimMatched = _state.helmetsDb.helmets.find(h => h.is_claim_matched === true);
+  const firstHelmet = claimMatched || _state.helmetsDb.helmets[0];
   if (firstHelmet) {
-    console.info("[mukut-viewer] boot: auto-loading first helmet:", firstHelmet.id, "GLB path:", firstHelmet.glb_path);
+    console.info("[mukut-viewer] boot: auto-loading first claim-matched helmet:", firstHelmet.id, "GLB path:", firstHelmet.glb_path);
     try {
       await selectHelmet(firstHelmet.id, scene, camera, controls, loader, canvas);
       console.info("[mukut-viewer] boot: auto-load complete");

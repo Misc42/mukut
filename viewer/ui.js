@@ -47,6 +47,9 @@ function renderBrandPills() {
       pill.classList.add("mv-pill-active");
       activeBrand = brand;
       renderModelGrid(modelGrid, helmets);
+      if (helmets.length > 0 && _onPickCallback) {
+        _onPickCallback(helmets[0].id);
+      }
     });
     pillRow.appendChild(pill);
   });
@@ -66,9 +69,15 @@ function renderBrandPills() {
   wrap.appendChild(modelGrid);
   container.appendChild(wrap);
 
-  const firstBrand = brands.keys().next().value;
-  if (firstBrand) {
-    pillRow.querySelector(`[data-brand="${CSS.escape(firstBrand)}"]`)?.click();
+  const claimBrand = [..._helmetsDb.helmets].find(h => h.is_claim_matched === true)?.brand;
+  const initialBrand = claimBrand || brands.keys().next().value;
+  if (initialBrand) {
+    [...pillRow.children].forEach(c => c.classList.remove("mv-pill-active"));
+    const initialPill = pillRow.querySelector(`[data-brand="${CSS.escape(initialBrand)}"]`);
+    if (initialPill) {
+      initialPill.classList.add("mv-pill-active");
+      renderModelGrid(modelGrid, brands.get(initialBrand));
+    }
   }
 }
 
