@@ -80,6 +80,14 @@
       }
     }
   },
+  "agv_motorcycle": {
+    "anchors": {
+      "chin": { "pos": [0, 0.045, 0.138], "normal": [0, -0.35, 0.94], "tangent_up": [0, 0.94, 0.35] },
+      "forehead_hud": { "pos": [0, 0.205, 0.122], "normal": [0, 0.42, 0.91], "tangent_up": [0, 0.91, -0.42] },
+      "rear_pod": { "pos": [0, 0.198, -0.105], "normal": [0, 0.55, -0.83], "tangent_up": [0, 0.83, 0.55] },
+      "antenna": { "pos": [0, 0.245, -0.04], "normal": [0, 1, 0], "tangent_up": [0, 0, -1] }
+    }
+  },
   "bell_moto_iii": {
     "anchors": {
       "chin": {

@@ -21,7 +21,7 @@ import {
 import { getLoader, loadGLB, normalizeScale } from "./loader.js";
 import { attachComponent, detachAllComponents, renderAnchorGizmos } from "./anchors.js";
 import { initUI, bindHelmetPicker, showLoading, hideLoading, showError, showBlockFallback, showHelmetNotInDB, hideNotInDB } from "./ui.js";
-import { loadGenericDemoHelmet, createProceduralMukutComponent } from "./fallback.js";
+import { loadGenericDemoHelmet, createProceduralMukutComponent, fixWebARrocksAGVMaterials } from "./fallback.js";
 
 const HELMETS_JSON = "./data/helmets.json";
 const ANCHORS_JSON = "./data/anchors.json";
@@ -113,6 +113,7 @@ async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
   try {
     helmetObj = await loadGLB(meta.glb_path, loader);
     normalizeScale(helmetObj, meta.shell_height_m);
+    if (meta.needs_alpha_fix) fixWebARrocksAGVMaterials(helmetObj);
   } catch (_err) {
     console.info(`[mukut-viewer] ${helmetId} not in DB — real GLB missing at ${meta.glb_path}`);
     hideLoading(canvas);

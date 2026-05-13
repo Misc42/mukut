@@ -94,6 +94,23 @@
       "disclaimer": "Representative full-face proxy — Royal Enfield merch CAD not yet sourced."
     },
     {
+      "id": "agv_motorcycle",
+      "display_name": "AGV (motorcycle helmet, fan-modeled)",
+      "brand": "AGV",
+      "segment": "premium-global",
+      "is_proxy": false,
+      "is_claim_matched": true,
+      "glb_path": "assets/helmets/agv_motorcycle.glb",
+      "needs_alpha_fix": true,
+      "shell_height_m": 0.282,
+      "attribution": {
+        "author": "WebAR.rocks (fan-modeled AGV; mesh nodes literally named prop_helmet_agv_low.*, materials prefixed prop_helmet_agv_*)",
+        "license": "MIT",
+        "source_url": "https://github.com/WebAR-rocks/WebAR.rocks.face/tree/master/demos/VTOHelmet"
+      },
+      "disclaimer": "Claim-matched: the author created this asset as an AGV-modeled motorcycle helmet (visible in mesh + material names). Not licensed by AGV S.p.A.; usage is via WebAR.rocks's MIT license on the asset."
+    },
+    {
       "id": "bell_moto_iii",
       "display_name": "Bell MOTO III",
       "brand": "Bell",

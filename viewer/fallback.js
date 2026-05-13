@@ -33,9 +33,9 @@ const SAFFRON = 0xE8B339;
  * available for future swap if needed.
  */
 const GENERIC_DEMO = {
-  path: "./assets/_demo/motorcycle_helmet.glb",
-  needsMaterialFix: true,
-  label: "Generic AGV-modeled full-face (demo only)",
+  path: "./assets/_demo/sceneview_premium.glb",
+  needsMaterialFix: false,
+  label: "Generic full-face (sceneview / sayedgamal655, no brand claim)",
 };
 
 export async function loadGenericDemoHelmet(loader) {
@@ -49,6 +49,8 @@ export async function loadGenericDemoHelmet(loader) {
 export async function loadDemoHelmet(loader, _meta) {
   return loadGenericDemoHelmet(loader);
 }
+
+export { fixWebARrocksAGVMaterials };
 
 function applyBareGeometryTint(root) {
   root.traverse(child => {
