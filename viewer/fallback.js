@@ -47,20 +47,25 @@ const DEMO_VARIANTS = {
     needsMaterialFix: false,
     needsTint: false,
   },
+  premium: {
+    path: "./assets/_demo/sceneview_premium.glb",
+    needsMaterialFix: false,
+    needsTint: false,
+  },
 };
 
 const BRAND_HELMET_MAP = {
-  Bell: "agv",
+  Bell: "premium",
+  Arai: "premium",
+  AXOR: "premium",
+  "Royal Enfield": "premium",
+  SMK: "premium",
   Torc: "agv",
   Scorpion: "agv",
   HJC: "dainese",
   LS2: "dainese",
-  Arai: "rynfkn",
-  AXOR: "rynfkn",
-  SMK: "rynfkn",
-  "Royal Enfield": "rynfkn",
-  Studds: "oga_racing",
-  Vega: "oga_racing",
+  Studds: "rynfkn",
+  Vega: "rynfkn",
   Steelbird: "oga_racing",
   Generic: "dainese",
 };
