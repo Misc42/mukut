@@ -4,7 +4,13 @@ Landing page + interactive 3D helmet compatibility viewer for **Mukut** — prod
 
 A clip-on safety module for any ISI-certified motorcycle helmet — dual rear cameras, live HUD, tri-radio mesh, cross-horizon SOS. v1 is being hand-built on perfboard and tested with a closed alpha of ~10 friends. Not on sale yet. No cloud, no subscription.
 
-**Live**: <https://misc42.github.io/mukut/> (GitHub Pages auto-builds on every push to `main`)
+**Live URLs:**
+- Landing + 3D helmet viewer: <https://misc42.github.io/mukut/>
+- 3D viewer debug mode (anchor gizmos): <https://misc42.github.io/mukut/?debug=1>
+- iOS rider page preview (demo mode + stubbed telemetry): <https://misc42.github.io/mukut/rider/?demo=1>
+- Rider SOS overlay flow trigger: <https://misc42.github.io/mukut/rider/?demo=sos>
+
+(GitHub Pages auto-builds on every push to `main`)
 
 ## Repo layout
 
