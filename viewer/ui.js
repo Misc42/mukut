@@ -101,8 +101,17 @@ function renderModelGrid(grid, helmets) {
     label.textContent = h.display_name;
 
     const conf = document.createElement("span");
-    conf.className = h.segment === "india-budget" ? "mv-conf mv-conf-estimated" : "mv-conf mv-conf-verified";
-    conf.textContent = h.segment === "india-budget" ? "~80% Estimated" : "98% Verified";
+    const isProxy = h.is_proxy === true;
+    if (isProxy) {
+      conf.className = "mv-conf mv-conf-proxy";
+      conf.textContent = "Proxy form-factor";
+    } else if (h.segment === "india-budget" || h.segment === "india-premium") {
+      conf.className = "mv-conf mv-conf-estimated";
+      conf.textContent = "~80% Estimated";
+    } else {
+      conf.className = "mv-conf mv-conf-verified";
+      conf.textContent = "98% Verified";
+    }
 
     card.appendChild(thumb);
     card.appendChild(label);

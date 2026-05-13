@@ -43,9 +43,15 @@ const BRAND_HELMET_MAP = {
   Bell: "agv",
   Torc: "agv",
   Scorpion: "agv",
+  AXOR: "agv",
   HJC: "dainese",
   Arai: "dainese",
   LS2: "dainese",
+  Studds: "dainese",
+  Vega: "dainese",
+  Steelbird: "dainese",
+  SMK: "dainese",
+  "Royal Enfield": "dainese",
   Generic: "dainese",
 };
 

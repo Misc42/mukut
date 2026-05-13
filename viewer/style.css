@@ -141,6 +141,11 @@
   background: rgba(232,179,57,0.12);
   color: var(--saffron);
 }
+.mv-conf-proxy {
+  background: rgba(255,85,85,0.10);
+  color: var(--danger);
+  border: 1px dashed rgba(255,85,85,0.35);
+}
 
 .mv-block {
   background: var(--surface);

@@ -1,13 +1,103 @@
 {
-  "_doc": "Helmet DB for the 3D viewer. All slots verified via Sketchfab v3 API as `isDownloadable: true` (see audit 2026-05-13). Each entry maps to a GLB asset under assets/helmets/<id>.glb. The viewer falls back to assets/_demo/damaged_helmet.glb (Khronos CC-BY 4.0) for any slot whose real GLB isn't committed yet.",
-  "_license_note": "Mix of CC-BY (8 slots) and Sketchfab Free Standard (1 slot — ramyouny). All require attribution in the viewer credits panel except Free Standard which doesn't require attribution but we credit anyway.",
-  "_manual_download_workflow": "1. Click each source_url 2. Sketchfab login + Download GLB 3. Run gltf-transform optimize input.glb output.glb --compress draco --texture-compress webp --simplify 0.5 4. Drop optimized output as assets/helmets/<id>.glb 5. git push — Pages auto-rebuild swaps demo placeholder for real GLB",
+  "_doc": "Helmet DB for the 3D viewer. Mix of global premium + India-market full-face brands. Each entry maps to a GLB asset under assets/helmets/<id>.glb (manually downloaded later). Until real GLBs are committed, viewer falls back to one of the demo helmets in assets/_demo/ based on BRAND_HELMET_MAP in viewer/fallback.js.",
+  "_license_note": "Premium global slots: 8 CC-BY + 1 Sketchfab Free Standard, all verified downloadable via Sketchfab v3 API. India-market slots: NO known CC-licensed CADs exist for these brands globally — placeholder routing via fallback variants until manual sourcing / AI generation lands.",
+  "_indian_market_disclosure": "Indian helmet brand CADs (Studds, Vega, Steelbird, AXOR, SMK, Royal Enfield) are not available under any permissive CC license anywhere on the public web as of 2026-05-13. Their slots in this DB show approximate full-face proxies until manual sourcing / commission lands. UI labels these as 'approximate' / 'representative form factor'.",
   "helmets": [
     {
+      "id": "studds_thunder",
+      "display_name": "Studds Thunder",
+      "brand": "Studds",
+      "segment": "india-budget",
+      "is_proxy": true,
+      "glb_path": "assets/helmets/studds_thunder.glb",
+      "shell_height_m": 0.278,
+      "attribution": {
+        "author": "TBD — Studds Helmets brand CAD not yet sourced",
+        "license": "TBD",
+        "source_url": "TBD"
+      },
+      "disclaimer": "Representative full-face proxy — Studds Accessories Ltd. CAD not yet sourced. Real CAD targeted for v1.5 commercial."
+    },
+    {
+      "id": "vega_crux_dx",
+      "display_name": "Vega Crux DX",
+      "brand": "Vega",
+      "segment": "india-budget",
+      "is_proxy": true,
+      "glb_path": "assets/helmets/vega_crux_dx.glb",
+      "shell_height_m": 0.275,
+      "attribution": {
+        "author": "TBD — Vega Auto Accessories CAD not yet sourced",
+        "license": "TBD",
+        "source_url": "TBD"
+      },
+      "disclaimer": "Representative full-face proxy — Vega Auto Accessories CAD not yet sourced."
+    },
+    {
+      "id": "steelbird_sba_1",
+      "display_name": "Steelbird SBA-1",
+      "brand": "Steelbird",
+      "segment": "india-budget",
+      "is_proxy": true,
+      "glb_path": "assets/helmets/steelbird_sba_1.glb",
+      "shell_height_m": 0.280,
+      "attribution": {
+        "author": "TBD — Steelbird CAD not yet sourced",
+        "license": "TBD",
+        "source_url": "TBD"
+      },
+      "disclaimer": "Representative full-face proxy — Steelbird Hi-Tech Industries CAD not yet sourced."
+    },
+    {
+      "id": "axor_apex",
+      "display_name": "AXOR Apex",
+      "brand": "AXOR",
+      "segment": "india-premium",
+      "is_proxy": true,
+      "glb_path": "assets/helmets/axor_apex.glb",
+      "shell_height_m": 0.282,
+      "attribution": {
+        "author": "TBD — AXOR Helmets CAD not yet sourced",
+        "license": "TBD",
+        "source_url": "TBD"
+      },
+      "disclaimer": "Representative premium-touring proxy — AXOR Helmets CAD not yet sourced. AXOR is Vega's premium sister brand."
+    },
+    {
+      "id": "smk_stellar",
+      "display_name": "SMK Stellar",
+      "brand": "SMK",
+      "segment": "india-premium",
+      "is_proxy": true,
+      "glb_path": "assets/helmets/smk_stellar.glb",
+      "shell_height_m": 0.282,
+      "attribution": {
+        "author": "TBD — SMK Helmets CAD not yet sourced",
+        "license": "TBD",
+        "source_url": "TBD"
+      },
+      "disclaimer": "Representative full-face proxy — SMK Helmets CAD not yet sourced."
+    },
+    {
+      "id": "royal_enfield_modular",
+      "display_name": "Royal Enfield Modular",
+      "brand": "Royal Enfield",
+      "segment": "india-premium",
+      "is_proxy": true,
+      "glb_path": "assets/helmets/royal_enfield_modular.glb",
+      "shell_height_m": 0.285,
+      "attribution": {
+        "author": "TBD — Royal Enfield CAD not yet sourced",
+        "license": "TBD",
+        "source_url": "TBD"
+      },
+      "disclaimer": "Representative full-face proxy — Royal Enfield merch CAD not yet sourced."
+    },
+    {
       "id": "bell_moto_iii",
-      "display_name": "Bell MOTO III (full-face)",
+      "display_name": "Bell MOTO III",
       "brand": "Bell",
-      "segment": "mass-market",
+      "segment": "premium-global",
       "glb_path": "assets/helmets/bell_moto_iii.glb",
       "shell_height_m": 0.282,
       "attribution": {
@@ -22,7 +112,7 @@
       "id": "hjc_classic",
       "display_name": "HJC (classic photogrammetry scan)",
       "brand": "HJC",
-      "segment": "premium",
+      "segment": "premium-global",
       "glb_path": "assets/helmets/hjc_classic.glb",
       "shell_height_m": 0.280,
       "attribution": {
@@ -37,7 +127,7 @@
       "id": "arai_motorcycle",
       "display_name": "Arai Motorcycle Helmet",
       "brand": "Arai",
-      "segment": "premium",
+      "segment": "premium-global",
       "glb_path": "assets/helmets/arai_motorcycle.glb",
       "shell_height_m": 0.285,
       "attribution": {
@@ -46,14 +136,13 @@
         "source_url": "https://sketchfab.com/3d-models/arai-motorcycle-helmet-e46811f7185b4db6b763c97f419cbb68",
         "sketchfab_uid": "e46811f7185b4db6b763c97f419cbb68",
         "raw_faces": 494476
-      },
-      "verify_note": "Verify in browser before download — duplicate-faceCount with another author's upload (possible re-upload)."
+      }
     },
     {
       "id": "torc_t1",
       "display_name": "Torc T1 Helmet",
       "brand": "Torc",
-      "segment": "mass-market",
+      "segment": "mass-global",
       "glb_path": "assets/helmets/torc_t1.glb",
       "shell_height_m": 0.280,
       "attribution": {
@@ -65,26 +154,10 @@
       }
     },
     {
-      "id": "akabhi_moto",
-      "display_name": "Generic Full-face Helmet",
-      "brand": "Generic",
-      "segment": "india-budget",
-      "glb_path": "assets/helmets/akabhi_moto.glb",
-      "shell_height_m": 0.275,
-      "attribution": {
-        "author": "akabhi006",
-        "license": "CC-BY",
-        "source_url": "https://sketchfab.com/3d-models/moto-helmet-69f6a3214221419b90af4fc76ca97370",
-        "sketchfab_uid": "69f6a3214221419b90af4fc76ca97370",
-        "raw_faces": 261916
-      },
-      "disclaimer": "Generic proxy — covers India-budget full-face segment (Vega, Studds, Steelbird) when those brands' CC-BY CADs are unavailable."
-    },
-    {
       "id": "ls2_with_texture",
       "display_name": "LS2 Helmet",
       "brand": "LS2",
-      "segment": "mass-market",
+      "segment": "mass-global",
       "glb_path": "assets/helmets/ls2_with_texture.glb",
       "shell_height_m": 0.278,
       "attribution": {
@@ -99,7 +172,7 @@
       "id": "scorpion_exo500",
       "display_name": "Scorpion EXO-500",
       "brand": "Scorpion",
-      "segment": "mass-market",
+      "segment": "mass-global",
       "glb_path": "assets/helmets/scorpion_exo500.glb",
       "shell_height_m": 0.282,
       "attribution": {
@@ -111,26 +184,10 @@
       }
     },
     {
-      "id": "ramyouny_generic",
-      "display_name": "Racing-style Full-face (generic)",
-      "brand": "Generic",
-      "segment": "india-budget",
-      "glb_path": "assets/helmets/ramyouny_generic.glb",
-      "shell_height_m": 0.275,
-      "attribution": {
-        "author": "ramyouny",
-        "license": "Sketchfab Free Standard",
-        "source_url": "https://sketchfab.com/3d-models/motorcycle-helmet-racing-helmet-b2ead0381b914a88810a8be9fc13f47a",
-        "sketchfab_uid": "b2ead0381b914a88810a8be9fc13f47a",
-        "raw_faces": 134942
-      },
-      "disclaimer": "Tags include both 'f1' and 'motorcycle' — eyeball the Sketchfab thumbnail before commit to confirm it's actually motorcycle full-face, not F1 open-cockpit helmet."
-    },
-    {
       "id": "scorpion_exo_combat",
       "display_name": "Scorpion EXO-COMBAT",
       "brand": "Scorpion",
-      "segment": "premium",
+      "segment": "premium-global",
       "glb_path": "assets/helmets/scorpion_exo_combat.glb",
       "shell_height_m": 0.280,
       "attribution": {
@@ -157,7 +214,7 @@
       "glb_path": "assets/mukut/forehead_hud.glb",
       "anchor_key": "forehead_hud",
       "color_hint": "saffron",
-      "description": "1-bit dithered rear feed + motion-triggered blind-spot alert glyphs. Mirrored L/R via firmware setting."
+      "description": "1-bit dithered rear feed + motion-triggered blind-spot alert glyphs."
     },
     {
       "id": "rear_pod",
