@@ -120,7 +120,7 @@ async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
   } catch (_err) {
     console.info(`[mukut-viewer] using demo placeholder for ${helmetId} (real GLB not yet at ${meta.glb_path})`);
     try {
-      helmetObj = await loadDemoHelmet(loader);
+      helmetObj = await loadDemoHelmet(loader, meta);
       normalizeScale(helmetObj, meta.shell_height_m);
       usedFallback = true;
     } catch (err) {

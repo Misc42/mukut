@@ -1,12 +1,20 @@
 /**
  * Asset fallbacks when a helmet GLB is not yet present in the repo.
  *
- * Helmet fallback: load assets/_demo/motorcycle_helmet.glb — an AGV-modeled
- *   full-face motorcycle helmet from the WebAR.rocks face-tracking demo
- *   repo (MIT-licensed, 4.13 MB). 9 PBR materials (chrome visor, leather
- *   strap, stitch, inner liner, etc), 27 texture maps — looks like a
- *   real motorcycle helmet with proper materials. Do NOT override its
- *   materials; they're already correct.
+ * Two demo placeholders ship in assets/_demo/ — each brand-pill picks
+ * one of them so the viewer shows visual variety across helmets even
+ * before per-helmet brand GLBs are committed:
+ *
+ *   - motorcycle_helmet.glb  — WebAR.rocks AGV touring/sport, MIT,
+ *                              4.13 MB, full PBR (chrome visor, leather
+ *                              strap, stitch detail)
+ *   - dainese_scan.glb       — Printables #502088 by RandyMay, CC0,
+ *                              7.1 MB, photogrammetry scan of a
+ *                              Dainese-style helmet, bare geometry
+ *                              (no UVs / textures) — runtime applies
+ *                              a matte gray plastic material
+ *
+ * Brand → variant assignment in BRAND_HELMET_MAP below.
  *
  * Mukut component fallback: procedural saffron-tinted primitives at
  *   OpenSCAD-source dimensions. Mounting face at local origin with
@@ -17,13 +25,59 @@ import * as THREE from "three";
 import { loadGLB } from "./loader.js";
 
 const SAFFRON = 0xE8B339;
-const DEMO_HELMET_PATH = "./assets/_demo/motorcycle_helmet.glb";
 
-export async function loadDemoHelmet(loader) {
-  const helmet = await loadGLB(DEMO_HELMET_PATH, loader);
+const DEMO_VARIANTS = {
+  agv: {
+    path: "./assets/_demo/motorcycle_helmet.glb",
+    needsMaterialFix: true,
+    needsTint: false,
+  },
+  dainese: {
+    path: "./assets/_demo/dainese_scan.glb",
+    needsMaterialFix: false,
+    needsTint: true,
+  },
+};
+
+const BRAND_HELMET_MAP = {
+  Bell: "agv",
+  Torc: "agv",
+  Scorpion: "agv",
+  HJC: "dainese",
+  Arai: "dainese",
+  LS2: "dainese",
+  Generic: "dainese",
+};
+
+const DEFAULT_VARIANT = "agv";
+
+function pickVariant(meta) {
+  if (!meta || !meta.brand) return DEFAULT_VARIANT;
+  return BRAND_HELMET_MAP[meta.brand] || DEFAULT_VARIANT;
+}
+
+export async function loadDemoHelmet(loader, meta) {
+  const variantKey = pickVariant(meta);
+  const variant = DEMO_VARIANTS[variantKey];
+  const helmet = await loadGLB(variant.path, loader);
   helmet.userData.isDemo = true;
-  fixWebARrocksAGVMaterials(helmet);
+  helmet.userData.demoVariant = variantKey;
+  if (variant.needsMaterialFix) fixWebARrocksAGVMaterials(helmet);
+  if (variant.needsTint) applyBareGeometryTint(helmet);
   return helmet;
+}
+
+function applyBareGeometryTint(root) {
+  root.traverse(child => {
+    if (!child.isMesh) return;
+    child.material = new THREE.MeshStandardMaterial({
+      color: 0x4A4A52,
+      metalness: 0.18,
+      roughness: 0.50,
+      side: THREE.FrontSide,
+    });
+    child.material.needsUpdate = true;
+  });
 }
 
 /**
