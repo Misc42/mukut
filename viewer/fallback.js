@@ -1,11 +1,12 @@
 /**
  * Asset fallbacks when a helmet GLB is not yet present in the repo.
  *
- * Helmet fallback: load assets/_demo/motorcycle_helmet.glb — a real
- *   3D-scanned full-face motorcycle helmet, CC0 (public domain) from
- *   Printables #502088 by RandyMay, decimated to ~7 MB web-ready.
- *   Reads correctly as a motorcycle helmet from any angle (visor +
- *   chin bar + vents intact).
+ * Helmet fallback: load assets/_demo/motorcycle_helmet.glb — an AGV-modeled
+ *   full-face motorcycle helmet from the WebAR.rocks face-tracking demo
+ *   repo (MIT-licensed, 4.13 MB). 9 PBR materials (chrome visor, leather
+ *   strap, stitch, inner liner, etc), 27 texture maps — looks like a
+ *   real motorcycle helmet with proper materials. Do NOT override its
+ *   materials; they're already correct.
  *
  * Mukut component fallback: procedural saffron-tinted primitives at
  *   OpenSCAD-source dimensions. Mounting face at local origin with
@@ -16,22 +17,11 @@ import * as THREE from "three";
 import { loadGLB } from "./loader.js";
 
 const SAFFRON = 0xE8B339;
-const SHELL_DEMO_COLOR = 0x2A2A38;
 const DEMO_HELMET_PATH = "./assets/_demo/motorcycle_helmet.glb";
 
 export async function loadDemoHelmet(loader) {
   const helmet = await loadGLB(DEMO_HELMET_PATH, loader);
   helmet.userData.isDemo = true;
-  helmet.traverse(child => {
-    if (child.isMesh && child.material) {
-      const mats = Array.isArray(child.material) ? child.material : [child.material];
-      mats.forEach(m => {
-        if (m.color) m.color.setHex(SHELL_DEMO_COLOR);
-        if ("metalness" in m) m.metalness = 0.20;
-        if ("roughness" in m) m.roughness = 0.42;
-      });
-    }
-  });
   return helmet;
 }
 
