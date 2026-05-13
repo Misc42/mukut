@@ -326,6 +326,7 @@
       <a href="#how">How</a>
       <a href="#specs">Specs</a>
       <a href="#dashboard">Dashboard</a>
+      <a href="./rider/?demo=1">Live preview</a>
       <a href="HARDWARE_PIPELINES.html">Tech docs</a>
     </nav>
     <!-- TODO: replace with real email after Mukut domain is locked -->
@@ -344,6 +345,7 @@
     <div class="cta-row">
       <!-- TODO: replace with real email after Mukut domain is locked -->
       <a href="mailto:waitlist@TODO.in?subject=Mukut%20friends-alpha" class="cta-primary">Ask to join the friends list</a>
+      <a href="./rider/?demo=1" class="cta-secondary">Try the rider preview →</a>
       <a href="https://github.com/Misc42/helmet" class="cta-secondary">GitHub repo →</a>
     </div>
   </div>
@@ -514,8 +516,67 @@
 <section class="section" id="dashboard">
   <div class="wrap">
     <p class="section-eyebrow">Try the dashboard</p>
-    <h2 class="section-title">There's no demo URL — and there's a reason.</h2>
-    <p class="section-sub">The companion dashboard isn't hosted on the public internet. It's served by the helmet itself, over a local WiFi access point that runs without a SIM or a data plan.</p>
+    <h2 class="section-title">Want to see it without owning a helmet?</h2>
+    <p class="section-sub">The production dashboard runs locally off the helmet's own WiFi AP — no SIM, no data plan, no cloud. For everyone who doesn't have a unit in their hands yet, the same webapp is hosted here in demo mode with stubbed telemetry so you can walk through the rider UI.</p>
+
+    <!-- Demo-preview CTA card. Sits above the existing two-column explainer
+         so the eye lands on the "try it now" affordance before the
+         conceptual "how the WiFi handshake works" text. Saffron border
+         echoes the brand palette and matches the v1-prototype scope-pill
+         convention used elsewhere on the page. -->
+    <a class="preview-cta" href="./rider/?demo=1">
+      <div class="preview-cta-meta">
+        <span class="preview-cta-eyebrow">Live preview · demo telemetry</span>
+        <h3 class="preview-cta-title">Try the rider app preview</h3>
+        <p class="preview-cta-body">Stubbed battery, mesh peers, GPS drift around Mumbai, and the full SOS overlay flow — exactly the layout an alpha rider sees on their phone, minus a real helmet on the other end. Append <code>?demo=sos</code> to the URL to watch the emergency overlay light up.</p>
+      </div>
+      <div class="preview-cta-go" aria-hidden>
+        <span class="preview-cta-arrow">→</span>
+      </div>
+    </a>
+
+    <style>
+      .preview-cta {
+        display: grid; grid-template-columns: 1fr auto; align-items: center;
+        gap: 24px;
+        background: linear-gradient(135deg, rgba(232,179,57,0.10), rgba(77,181,255,0.04));
+        border: 1px solid rgba(232,179,57,0.45);
+        border-radius: 14px; padding: 28px 32px;
+        margin-bottom: 30px;
+        text-decoration: none; color: inherit;
+        transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      }
+      .preview-cta:hover {
+        border-color: var(--saffron);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(232,179,57,0.18);
+      }
+      .preview-cta-eyebrow {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+        color: var(--saffron); display: inline-block; margin-bottom: 10px;
+      }
+      .preview-cta-title { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; }
+      .preview-cta-body { color: var(--ink-muted); font-size: 14.5px; line-height: 1.6; max-width: 720px; }
+      .preview-cta-body code {
+        font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;
+        color: var(--saffron); background: rgba(232,179,57,0.10);
+        border: 1px solid rgba(232,179,57,0.22);
+        padding: 1px 6px; border-radius: 5px;
+      }
+      .preview-cta-go {
+        width: 56px; height: 56px; border-radius: 50%;
+        background: var(--saffron); color: var(--paper);
+        display: grid; place-items: center; font-size: 24px; font-weight: 600;
+        flex-shrink: 0;
+        transition: transform 0.2s;
+      }
+      .preview-cta:hover .preview-cta-go { transform: translateX(4px); }
+      @media (max-width: 640px) {
+        .preview-cta { grid-template-columns: 1fr; text-align: left; padding: 22px; }
+        .preview-cta-go { width: 44px; height: 44px; font-size: 20px; }
+      }
+    </style>
 
     <div class="dash">
       <div class="dash-side">
@@ -534,7 +595,7 @@
           <li>microSD usage, file index, phone-bridge offload status</li>
           <li>Settings: HUD eye, volume, mic mute, recording on/off</li>
         </ul>
-        <p style="margin-top:18px;">Once a unit is in your hands during friends-alpha, the dashboard is one WiFi-join away. Until then, the source lives on GitHub if you want to read what it does.</p>
+        <p style="margin-top:18px;">Once a unit is in your hands during friends-alpha, the dashboard is one WiFi-join away. Until then, the source lives on GitHub if you want to read what it does — or use the demo preview link above to walk through the UI right now.</p>
       </div>
     </div>
   </div>
