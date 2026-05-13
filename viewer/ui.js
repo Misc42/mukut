@@ -156,6 +156,7 @@ function renderCreditsPanel() {
     { name: "Motorcycle Helmet (sport-touring)", author: "ANDRIANIAINAToky via rynfkn/FP-Grafkom", license: "CC-BY-4.0", url: "https://github.com/rynfkn/FP-Grafkom" },
     { name: "Low-poly Racing Helmet", author: "OpenGameArt contributor", license: "CC-BY-SA-4.0", url: "https://opengameart.org/content/low-poly-racing-helmet" },
     { name: "Motorcycle Helmet (premium V-Ray PBR)", author: "sayedgamal655 (via SceneView catalog)", license: "CC-BY-4.0", url: "https://sketchfab.com/3d-models/moto-helmet-6c75ac1b13a047bd86742f37ce25adac" },
+    { name: "AI-generated helmet variants (5×)", author: "Pollinations.ai + TripoSR pipeline", license: "MIT (TripoSR) + public-domain (Pollinations)", url: "https://github.com/VAST-AI-Research/TripoSR" },
   ];
   const demoHtml = demoItems.map(d =>
     `<li><a href="${escapeHtml(d.url)}" target="_blank" rel="noopener">${escapeHtml(d.name)}</a> by ${escapeHtml(d.author)} (${escapeHtml(d.license)})</li>`

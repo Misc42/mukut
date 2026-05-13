@@ -52,22 +52,47 @@ const DEMO_VARIANTS = {
     needsMaterialFix: false,
     needsTint: false,
   },
+  ai_sport: {
+    path: "./assets/_demo/helmet_sport.glb",
+    needsMaterialFix: false,
+    needsTint: false,
+  },
+  ai_indian_commuter: {
+    path: "./assets/_demo/helmet_indian_commuter.glb",
+    needsMaterialFix: false,
+    needsTint: false,
+  },
+  ai_racing: {
+    path: "./assets/_demo/helmet_racing.glb",
+    needsMaterialFix: false,
+    needsTint: false,
+  },
+  ai_modular: {
+    path: "./assets/_demo/helmet_modular.glb",
+    needsMaterialFix: false,
+    needsTint: false,
+  },
+  ai_offroad: {
+    path: "./assets/_demo/helmet_offroad.glb",
+    needsMaterialFix: false,
+    needsTint: false,
+  },
 };
 
 const BRAND_HELMET_MAP = {
   Bell: "premium",
   Arai: "premium",
-  AXOR: "premium",
-  "Royal Enfield": "premium",
-  SMK: "premium",
+  AXOR: "ai_sport",
+  SMK: "ai_modular",
+  "Royal Enfield": "ai_offroad",
   Torc: "agv",
   Scorpion: "agv",
   HJC: "dainese",
   LS2: "dainese",
-  Studds: "rynfkn",
+  Studds: "ai_indian_commuter",
   Vega: "rynfkn",
-  Steelbird: "oga_racing",
-  Generic: "dainese",
+  Steelbird: "ai_racing",
+  Generic: "oga_racing",
 };
 
 const DEFAULT_VARIANT = "agv";
