@@ -37,21 +37,31 @@ const DEMO_VARIANTS = {
     needsMaterialFix: false,
     needsTint: true,
   },
+  rynfkn: {
+    path: "./assets/_demo/rynfkn_motorcycle.glb",
+    needsMaterialFix: false,
+    needsTint: false,
+  },
+  oga_racing: {
+    path: "./assets/_demo/oga_racing.glb",
+    needsMaterialFix: false,
+    needsTint: false,
+  },
 };
 
 const BRAND_HELMET_MAP = {
   Bell: "agv",
   Torc: "agv",
   Scorpion: "agv",
-  AXOR: "agv",
   HJC: "dainese",
-  Arai: "dainese",
   LS2: "dainese",
-  Studds: "dainese",
-  Vega: "dainese",
-  Steelbird: "dainese",
-  SMK: "dainese",
-  "Royal Enfield": "dainese",
+  Arai: "rynfkn",
+  AXOR: "rynfkn",
+  SMK: "rynfkn",
+  "Royal Enfield": "rynfkn",
+  Studds: "oga_racing",
+  Vega: "oga_racing",
+  Steelbird: "oga_racing",
   Generic: "dainese",
 };
 

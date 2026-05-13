@@ -144,12 +144,31 @@ function showInlineEmailCapture(container) {
 function renderCreditsPanel() {
   const container = document.getElementById("viewer-credits");
   if (!container) return;
-  const items = _helmetsDb.helmets.map(h => {
+  const helmetItems = _helmetsDb.helmets.map(h => {
     const a = h.attribution;
     if (!a || !a.source_url || a.source_url === "TBD") return null;
     return `<li><a href="${escapeHtml(a.source_url)}" target="_blank" rel="noopener">${escapeHtml(h.display_name)}</a> by ${escapeHtml(a.author)} (${escapeHtml(a.license)})</li>`;
   }).filter(Boolean).join("");
-  container.innerHTML = `<details class="mv-credits"><summary>3D model credits (CC-BY)</summary><ul>${items}</ul></details>`;
+
+  const demoItems = [
+    { name: "Motorcycle Helmet (AGV-modeled)", author: "WebAR.rocks", license: "MIT", url: "https://github.com/WebAR-rocks/WebAR.rocks.face" },
+    { name: "Full Face Motorcycle Helmet 3D Scan", author: "RandyMay", license: "CC0", url: "https://www.printables.com/model/502088-full-face-motorcycle-helmet-3d-scan" },
+    { name: "Motorcycle Helmet (sport-touring)", author: "ANDRIANIAINAToky via rynfkn/FP-Grafkom", license: "CC-BY-4.0", url: "https://github.com/rynfkn/FP-Grafkom" },
+    { name: "Low-poly Racing Helmet", author: "OpenGameArt contributor", license: "CC-BY-SA-4.0", url: "https://opengameart.org/content/low-poly-racing-helmet" },
+  ];
+  const demoHtml = demoItems.map(d =>
+    `<li><a href="${escapeHtml(d.url)}" target="_blank" rel="noopener">${escapeHtml(d.name)}</a> by ${escapeHtml(d.author)} (${escapeHtml(d.license)})</li>`
+  ).join("");
+
+  container.innerHTML = `
+    <details class="mv-credits">
+      <summary>3D model credits</summary>
+      <p class="mv-credits-section">Demo placeholders currently in use:</p>
+      <ul>${demoHtml}</ul>
+      <p class="mv-credits-section">Brand-specific helmet CADs (target sources, swap-in as committed):</p>
+      <ul>${helmetItems}</ul>
+    </details>
+  `;
 }
 
 export function showLoading(canvas, message) {
