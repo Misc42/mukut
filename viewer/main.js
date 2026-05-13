@@ -89,7 +89,14 @@ async function boot() {
 
   const firstHelmet = _state.helmetsDb.helmets[0];
   if (firstHelmet) {
-    await selectHelmet(firstHelmet.id, scene, camera, controls, loader, canvas);
+    console.info("[mukut-viewer] boot: auto-loading first helmet:", firstHelmet.id, "GLB path:", firstHelmet.glb_path);
+    try {
+      await selectHelmet(firstHelmet.id, scene, camera, controls, loader, canvas);
+      console.info("[mukut-viewer] boot: auto-load complete");
+    } catch (err) {
+      console.error("[mukut-viewer] boot: auto-load failed:", err);
+      showError(canvas, `Auto-load error: ${err.message || err}`);
+    }
   }
 }
 
@@ -115,11 +122,17 @@ async function selectHelmet(helmetId, scene, camera, controls, loader, canvas) {
   let helmetObj;
   let isGenericDemo = false;
   try {
+    console.info(`[mukut-viewer] loading real GLB: ${meta.glb_path}`);
     helmetObj = await loadGLB(meta.glb_path, loader);
+    console.info(`[mukut-viewer] GLB loaded for ${helmetId}, normalizing scale...`);
     normalizeScale(helmetObj, meta.shell_height_m);
-    if (meta.needs_alpha_fix) fixWebARrocksAGVMaterials(helmetObj);
+    if (meta.needs_alpha_fix) {
+      console.info(`[mukut-viewer] applying alpha-fix for ${helmetId}`);
+      fixWebARrocksAGVMaterials(helmetObj);
+    }
+    console.info(`[mukut-viewer] real GLB pipeline complete for ${helmetId}`);
   } catch (_err) {
-    console.info(`[mukut-viewer] ${helmetId} not in DB — real GLB missing at ${meta.glb_path}`);
+    console.info(`[mukut-viewer] ${helmetId} not in DB — real GLB missing at ${meta.glb_path}:`, _err.message || _err);
     hideLoading(canvas);
     const banner = document.getElementById("viewer-fallback-banner");
     if (banner) banner.style.display = "none";
