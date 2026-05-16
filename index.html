@@ -764,29 +764,27 @@
         return new TextDecoder().decode(pt);
       }
 
-      async function bomUnlock(e, cachedPwd) {
+      async function bomUnlock(e) {
         if (e && e.preventDefault) e.preventDefault();
-        const pwd = cachedPwd || document.getElementById('bom-pwd').value;
+        const pwd = document.getElementById('bom-pwd').value;
         if (!pwd) return false;
         try {
           const html = await bomDecrypt(pwd);
           document.getElementById('bom-content').innerHTML = html;
           document.getElementById('bom-content').hidden = false;
           document.getElementById('bom-gate').hidden = true;
-          sessionStorage.setItem('mukut-bom-pwd', pwd);
         } catch (err) {
           const errEl = document.getElementById('bom-error');
           errEl.hidden = false;
           setTimeout(() => { errEl.hidden = true; }, 4000);
-          if (cachedPwd) sessionStorage.removeItem('mukut-bom-pwd');
         }
         return false;
       }
 
-      (function autoUnlockFromSession() {
-        const cached = sessionStorage.getItem('mukut-bom-pwd');
-        if (cached) bomUnlock(null, cached);
-      })();
+      // Strict mode: no sessionStorage caching. Every page-load
+      // (including F5 / Ctrl-R simple refresh) re-shows the lock card
+      // and re-prompts for the password. Closed-alpha friends type the
+      // shared password each visit — same friction as any other auth gate.
     </script>
   </div>
 </section>
