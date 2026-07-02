@@ -1,5 +1,7 @@
 # Mukut — मुकुट, हर मोड़ पर साथ
 
+**Live · <https://misc42.github.io/mukut/>**
+
 Landing page + interactive 3D helmet compatibility viewer for **Mukut** — product 02 in the [Misc42 Labs](https://misc42.github.io/misc42labs/) portfolio.
 
 A clip-on safety module for any ISI-certified motorcycle helmet — dual rear cameras, live HUD, tri-radio mesh, cross-horizon SOS. v1 is being hand-built on perfboard and tested with a closed alpha of ~10 friends. Not on sale yet. No cloud, no subscription.
@@ -44,4 +46,4 @@ This sidesteps the "brands won't license CADs" problem entirely. AGV via WebAR.r
 
 Firmware / hardware / engineering docs live in the private [Misc42/helmet](https://github.com/Misc42/helmet) repo. This public repo is intentionally only the marketing landing + viewer.
 
-— Tanay Misra · `tanaymisra97@gmail.com`
+— Misc42 Labs · `hello@misc42.com`
