@@ -7,205 +7,131 @@
 <meta name="description" content="Mukut privacy policy. No cloud, no analytics, no ad SDKs. Data stays on your helmet + phone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&family=Instrument+Serif:ital@0;1&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Anek+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #0F0E14;
-    --ink: #F4EFE6;
-    --ink-muted: #B8B0A2;
-    --ink-faint: #5C5749;
-    --surface: #1A1922;
-    --rule: #2A2832;
-    --saffron: #E8B339;
-    --maxw: 720px;
+    --paper: #FAFAF7;
+    --surface: #FFFFFF;
+    --ink: #131315;
+    --ink-muted: #5F5F66;
+    --ink-faint: #8A8A92;
+    --rule: #E8E7E1;
+    --saffron: #C2410C;
+    --saffron-hover: #9A3412;
+    --honest-bg: #FBF4EC;
+    --honest-border: #EAD9C9;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--paper); color: var(--ink); font-family: "IBM Plex Sans", system-ui, sans-serif; line-height: 1.6; }
-  body { padding: 4rem 1.5rem 6rem; max-width: var(--maxw); margin: 0 auto; font-size: 16px; }
-  header { padding-bottom: 2rem; border-bottom: 1px solid var(--rule); margin-bottom: 2.5rem; }
-  .wordmark { font-family: "Instrument Serif", Georgia, serif; font-size: 2rem; font-weight: 400; letter-spacing: -0.01em; color: var(--ink); }
-  .wordmark .deva { font-family: "Tiro Devanagari Hindi", "IBM Plex Sans", serif; color: var(--saffron); margin-left: 0.5rem; font-size: 1.6rem; }
-  .breadcrumb { display: inline-block; margin-top: 0.4rem; font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.12em; }
-  .breadcrumb a { color: var(--ink-muted); text-decoration: none; border-bottom: 1px dashed var(--ink-faint); }
-  .breadcrumb a:hover { color: var(--saffron); border-bottom-color: var(--saffron); }
-  h1 { font-family: "Instrument Serif", Georgia, serif; font-size: 2.4rem; font-weight: 400; margin-bottom: 0.4rem; letter-spacing: -0.015em; }
-  h2 { font-family: "Instrument Serif", Georgia, serif; font-size: 1.5rem; font-weight: 400; margin: 2.4rem 0 0.8rem; color: var(--ink); border-top: 1px solid var(--rule); padding-top: 1.6rem; }
-  h2:first-of-type { border-top: none; padding-top: 0; }
-  h3 { font-family: "IBM Plex Sans", sans-serif; font-size: 1.05rem; font-weight: 600; margin: 1.4rem 0 0.4rem; color: var(--ink); }
-  p { margin: 0.6rem 0 1rem; color: var(--ink-muted); }
-  p strong, li strong { color: var(--ink); font-weight: 600; }
-  ul, ol { margin: 0.4rem 0 1rem 1.4rem; color: var(--ink-muted); }
-  li { margin: 0.3rem 0; }
-  hr { border: none; border-top: 1px solid var(--rule); margin: 2rem 0; }
-  code, .mono { font-family: "IBM Plex Mono", monospace; font-size: 0.92em; background: var(--surface); color: var(--saffron); padding: 0.08em 0.35em; border-radius: 3px; }
-  a { color: var(--saffron); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
-  a:hover { border-bottom-color: var(--saffron); }
-  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem; }
-  th, td { text-align: left; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--rule); color: var(--ink-muted); vertical-align: top; }
-  th { color: var(--ink); font-weight: 600; background: var(--surface); }
-  .meta { font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; color: var(--ink-muted); margin-bottom: 1.5rem; letter-spacing: 0.04em; }
-  .meta .key { color: var(--ink-faint); margin-right: 0.4em; }
-  blockquote { border-left: 2px solid var(--saffron); margin: 1rem 0; padding: 0.5rem 0 0.5rem 1rem; color: var(--ink); font-style: italic; }
-  footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--rule); font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; color: var(--ink-faint); }
-  footer a { color: var(--ink-muted); }
+  html, body { background: var(--paper); color: var(--ink); }
+  body { font-family: 'Schibsted Grotesk', system-ui, sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  ::selection { background: rgba(194,65,12,0.14); }
+  .deva { font-family: 'Anek Devanagari', sans-serif; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  .nav { position: sticky; top: 0; z-index: 20; height: 68px; backdrop-filter: blur(12px); background: rgba(250,250,247,0.88); border-bottom: 1px solid var(--rule); }
+  .nav .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: baseline; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+  .brand .deva { font-size: 15px; font-weight: 500; color: var(--ink-faint); }
+  .nav-links { display: flex; gap: 30px; font-size: 14px; font-weight: 500; }
+  .nav-links a { color: var(--ink-muted); text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { font-size: 13.5px; font-weight: 600; color: var(--paper); background: var(--saffron); padding: 9px 18px; border-radius: 8px; text-decoration: none; transition: background 0.15s; }
+  .nav-cta:hover { background: var(--saffron-hover); }
+
+  .doc { max-width: 760px; margin: 0 auto; padding: 80px 40px 96px; }
+  .doc-meta { margin: 0 0 12px; font-size: 13.5px; font-weight: 600; color: var(--saffron); }
+  .doc h1 { margin: 0; font-size: clamp(36px, 4.2vw, 52px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700; }
+
+  .tldr { margin-top: 32px; border: 1px solid var(--honest-border); background: var(--honest-bg); border-radius: 14px; padding: 24px 28px; }
+  .tldr-tag { margin: 0 0 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--saffron); }
+  .tldr ul { list-style: none; display: grid; gap: 8px; font-size: 15.5px; line-height: 1.6; color: #3C3C42; }
+  .tldr li { display: flex; gap: 10px; }
+  .tldr li::before { content: "·"; color: var(--saffron); font-weight: 700; }
+
+  .doc-sections { margin-top: 36px; display: grid; gap: 24px; }
+  .doc-sections > div { border-top: 1px solid var(--rule); padding-top: 18px; }
+  .doc-sections h2 { margin: 0; font-size: 17.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .doc-sections p { margin: 6px 0 0; font-size: 15px; line-height: 1.65; color: #3C3C42; }
+
+  .doc-footnote { margin: 44px 0 0; border-top: 1px solid var(--rule); padding-top: 20px; font-size: 13.5px; color: var(--ink-faint); }
+  .doc-footnote a { color: var(--saffron); text-decoration: none; }
+  .doc-footnote a:hover { text-decoration: underline; }
+
+  .foot { border-top: 1px solid var(--rule); }
+  .foot .wrap { padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; font-size: 13.5px; color: var(--ink-faint); flex-wrap: wrap; gap: 12px; }
+  .foot nav { display: flex; gap: 20px; flex-wrap: wrap; }
+  .foot nav a { color: var(--ink-faint); text-decoration: none; transition: color 0.15s; }
+  .foot nav a:hover { color: var(--ink); }
+  .foot nav a.current { color: var(--ink); }
+
+  @media (max-width: 820px) {
+    .nav-links { display: none; }
+    .doc { padding: 56px 24px 72px; }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wordmark">Mukut<span class="deva">मुकुट</span></div>
-  <nav class="breadcrumb"><a href="./index.html">← back to landing</a></nav>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span>Mukut</span>
+      <span class="deva">मुकुट</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#module">The module</a>
+      <a href="index.html#app">Rider app</a>
+      <a href="index.html#honest">Honest scope</a>
+    </nav>
+    <!-- TODO: replace with real email after Mukut domain is locked -->
+    <a class="nav-cta" href="mailto:waitlist@TODO.in?subject=Mukut%20friends-alpha">Join the alpha</a>
+  </div>
 </header>
 
-<h1>Privacy Policy</h1>
-<div class="meta">
-  <span class="key">effective</span> 27 April 2026 &nbsp;
-  <span class="key">version</span> 1.0 &nbsp;
-  <span class="key">applies to</span> Mukut Companion (Android), the Mukut helmet module, and the helmet-served web dashboard.
-</div>
+<main class="doc">
+  <p class="doc-meta">Privacy Policy · effective 27 April 2026</p>
+  <h1>There is no Mukut cloud.</h1>
 
-<h2>TL;DR (read this if nothing else)</h2>
-<ul>
-  <li>We do not run a server. There is no Mukut cloud.</li>
-  <li>No account. No login. No ads. No subscription. No analytics SDKs.</li>
-  <li>Your video, audio, GPS and ride history live on your helmet's microSD and your phone. Nowhere else.</li>
-  <li>The phone-to-helmet link is a local Wi-Fi AP hosted by the helmet itself. Nothing on that link reaches the public internet through us.</li>
-  <li>You can wipe everything by formatting the microSD and clearing the app's storage.</li>
-</ul>
-<p>If a future feature could change any of the above, we will ship a new policy version and the app will surface a plain-language diff before you can use that feature. We will not change this silently.</p>
+  <div class="tldr">
+    <p class="tldr-tag">TL;DR — read this if nothing else</p>
+    <ul>
+      <li>We do not run a server. There is no Mukut cloud.</li>
+      <li>Your recordings live on the helmet's microSD and your phone — nowhere else.</li>
+      <li>Mesh voice is never recorded or routed through the internet.</li>
+      <li>No analytics, no ads, no data sales. If a future feature changes this, the app shows a plain-language diff first.</li>
+    </ul>
+  </div>
 
-<h2>1. Who we are</h2>
-<p>Mukut is a clip-on safety module for ISI-certified motorcycle helmets, designed and built in India. The Mukut Companion app (the "App") is the Android-side interface to the module (the "Helmet").</p>
-<p><strong>Operator and data controller for the App:</strong></p>
-<p><strong>[Legal entity TBD]</strong> · <strong>[Registered address TBD]</strong> · India<br>Email: <a href="mailto:privacy@mukutsenses.com">privacy@mukutsenses.com</a></p>
-<p>This policy is written to comply with the Digital Personal Data Protection Act, 2023 (India), the Google Play Data Safety disclosures, and the spirit of the EU GDPR's data-minimisation principles. Where requirements differ, we apply the strictest one.</p>
+  <div class="doc-sections">
+    <div><h2>1. Who we are</h2><p>Mukut is a clip-on safety module for ISI-certified motorcycle helmets, designed and built in India. The Mukut Companion app is the Android-side interface to the module. Operator and data controller: Misc42 Labs (sole proprietorship, India). Written to comply with India's DPDP Act 2023, Google Play Data Safety, and the spirit of GDPR data-minimisation.</p></div>
+    <div><h2>2. What the app collects, stores, processes</h2><p>Split by where data lives, because where matters more than what: ride history and settings stay on your phone; camera recordings stay on the helmet's microSD. A future opt-in lets you point offload at a server URL you own (NAS, Nextcloud, S3) — off by default.</p></div>
+    <div><h2>3. What the app does NOT collect</h2><p>Commitments, not aspirations: no location sold or shared, no audio recordings of mesh voice, no contact lists, no advertising identifiers, no analytics events leaving the device.</p></div>
+    <div><h2>4. Permissions, and why</h2><p>Bluetooth (pairing the module), Wi-Fi/network (joining the helmet's AP), notifications (SOS + ride state), location only as Android requires for BLE scanning. We do not request phone state, contacts, microphone, camera, or all-files access.</p></div>
+    <div><h2>5. BLE pairing and link security</h2><p>BLE Secure Connections with numeric-comparison or passkey. A per-pairing key authenticates the Wi-Fi join; the helmet's AP uses WPA2-PSK with a per-helmet password printed on the module and rotatable from the app.</p></div>
+    <div><h2>6. Audio and video residency</h2><p>Mesh voice between riders is encoded on the helmet and transmitted over the active radio — not recorded, not stored, never routed through the internet. Camera footage writes to the helmet's microSD only.</p></div>
+    <div><h2>7. Retention</h2><p>Phone-side ride history: kept until you delete it (long-press a ride → Delete, or Settings → Wipe all rides). Helmet-side recordings: circular buffer on the microSD; oldest footage is overwritten first.</p></div>
+    <div><h2>8. Your rights</h2><p>Under DPDP 2023 and applicable EU/UK rules: access, correction, erasure, and grievance redressal. Since your data lives on your own devices, most of these are actions you perform directly in the app.</p></div>
+    <div><h2>9. Children</h2><p>Not directed at users under 18 — motorcycles in India require a licence. We do not knowingly collect data from minors.</p></div>
+    <div><h2>10. Security posture, honestly</h2><p>All phone-to-helmet traffic rides a local Wi-Fi link with WPA2-PSK plus an app-layer per-pairing key. A v1 prototype is not a hardened product; the honest-scope page says exactly what is and isn't certified.</p></div>
+    <div><h2>11. International transfers</h2><p>None — we do not collect your data on a server. If you use the future self-hosted upload URL, you are the controller of that destination.</p></div>
+    <div><h2>12. Changes to this policy</h2><p>Meaningful changes surface as a plain-language diff in the app that you must acknowledge. Cosmetic edits are recorded in version history.</p></div>
+    <div><h2>13. Data deletion</h2><p>Most deletion is a two-tap action on your own device: wipe rides in the app, format the microSD from Settings, unpair to forget keys. This satisfies the Google Play data-deletion disclosure.</p></div>
+    <div><h2>14. Contact</h2><p>General privacy: privacy@mukutsenses.com. Grievance officer (DPDP): reachable at privacy@mukutsenses.com.</p></div>
+  </div>
 
-<h2>2. What the App collects, stores, and processes</h2>
-<p>We split this by where the data lives, because where matters more than what.</p>
+  <p class="doc-footnote">This is a condensed version of the full policy — the complete legal text ships with the app. General privacy: <a href="mailto:privacy@mukutsenses.com">privacy@mukutsenses.com</a></p>
+</main>
 
-<h3>2.1 On your phone, in the App's private storage</h3>
-<ul>
-  <li><strong>GPS location</strong> while the App is open and a ride is active. Used for two things: drawing your ride track and relaying the current fix to the Helmet so it can stamp recordings and SOS payloads. The fix is read from Android's location API and is never transmitted off your phone except via the local Wi-Fi link to the Helmet.</li>
-  <li><strong>Ride history</strong> — start time, duration, route polyline, distance, and a pointer to the Helmet-side video file index. Stored in a local SQLite database.</li>
-  <li><strong>Pairing data</strong> — the Bluetooth Low Energy (BLE) MAC and friendly name of your Helmet, plus a per-pairing key.</li>
-  <li><strong>App preferences</strong> — HUD toggle, volume, mic mute, recording quality.</li>
-</ul>
-
-<h3>2.2 On the Helmet's microSD card</h3>
-<ul>
-  <li><strong>Video recordings</strong> from the rear cameras, stamped with timestamp and (if available) the GPS fix relayed from your phone.</li>
-  <li><strong>Audio</strong> is processed on the Helmet for mesh voice and is <strong>not</strong> recorded to the SD card by default.</li>
-  <li><strong>System logs</strong> — boot times, radio link quality, battery curve.</li>
-</ul>
-<p>The microSD is yours. You can pop it out with the included tool and read it on any computer. Wiping it is a format away.</p>
-
-<h3>2.3 On the local Wi-Fi link between phone and Helmet</h3>
-<ul>
-  <li>Live rear-camera video stream (WebSocket binary frames carrying H.264 NAL units, decoded in-browser via WebCodecs on iOS Safari; native Media3 RTSP on Android).</li>
-  <li>Live status telemetry (battery, link quality, peer count).</li>
-  <li>Outbound from phone: the GPS fix, navigation cues, and SOS triggers.</li>
-</ul>
-<p>This link is a Wi-Fi AP <strong>hosted by the Helmet</strong>, not by your home router or a phone hotspot. Nothing on this link is forwarded to the internet by us.</p>
-
-<h3>2.4 What about the cloud?</h3>
-<p>There is no Mukut cloud. We do not operate a backend. We do not have a database of users, helmets, rides, locations, or videos. We cannot "look up" your account because there is no account.</p>
-
-<h3>2.5 Optional, off-by-default: user-supplied upload URL (v1.5+)</h3>
-<p>A future App version will let you paste your own server URL (your home NAS, a self-hosted Nextcloud, an S3 bucket you own) so the App can offload Helmet recordings to it. This is opt-in, off by default, and the URL never leaves your phone except as the destination of your own uploads. We do not see, proxy, or relay that traffic.</p>
-
-<h2>3. What the App does NOT collect</h2>
-<p>We are stating these as commitments, not aspirations.</p>
-<ul>
-  <li>No advertising identifier (AAID, IDFA).</li>
-  <li>No analytics, telemetry, crash reporting, attribution, or A/B SDK.</li>
-  <li>No Google Firebase, no Crashlytics, no Sentry, no Mixpanel, no Segment.</li>
-  <li>No Google Play Services dependency at runtime — the App ships Play-Services-free and runs on AOSP-only and de-Googled phones.</li>
-  <li>No phone number, email, name, gender, age, or government ID.</li>
-  <li>No contacts, SMS, call log, or installed-app list.</li>
-  <li>No microphone access from the phone (audio for the mesh comes from the Helmet's own mics).</li>
-  <li>No background location. Location is read only while a ride is active and the App is in the foreground or in a foreground service notified to you.</li>
-  <li>No third-party SDKs of any kind.</li>
-</ul>
-
-<h2>4. Permissions the App requests, and why</h2>
-<table>
-  <tr><th>Android permission</th><th>Why</th><th>When</th></tr>
-  <tr><td><code>BLUETOOTH_SCAN</code>, <code>BLUETOOTH_CONNECT</code></td><td>First-time pairing with the Helmet, plus the BLE handlebar SOS button.</td><td>Active during pairing; idle thereafter.</td></tr>
-  <tr><td><code>ACCESS_FINE_LOCATION</code></td><td>Read your GPS fix to relay to the Helmet and draw ride tracks. Also gates Wi-Fi SSID reads on Android 12+ (we read your current network's name only to confirm you've joined the helmet AP).</td><td>Only while a ride is active.</td></tr>
-  <tr><td><code>FOREGROUND_SERVICE</code> (<code>mediaPlayback</code>, <code>connectedDevice</code>, <code>location</code>)</td><td>Keep the rear-feed, ride-tracking, and BLE link running when your screen is off.</td><td>Only while the dashboard is open; a sticky notification is always visible.</td></tr>
-  <tr><td><code>WRITE_EXTERNAL_STORAGE</code> (scoped, Android 11+)</td><td>Save exported ride GPX/MP4 files to your chosen folder.</td><td>Only when you export.</td></tr>
-</table>
-<p>We do not request <code>READ_PHONE_STATE</code>, <code>READ_CONTACTS</code>, <code>RECORD_AUDIO</code>, <code>CAMERA</code>, or any "all files" access.</p>
-
-<h2>5. BLE pairing and link security</h2>
-<p>Pairing uses BLE Secure Connections with a numeric-comparison or passkey flow shown on the App. Once paired, the App and Helmet exchange a per-pairing key used to authenticate the Wi-Fi join. You can unpair from the App's settings; this rotates the key on both sides.</p>
-<p>The Helmet's Wi-Fi AP uses WPA2-PSK with a per-helmet password printed on the underside of the module and rotatable from the App.</p>
-
-<h2>6. Audio and video residency</h2>
-<ul>
-  <li><strong>Mesh voice</strong> between riders is encoded on the Helmet (Opus 16 kbps) and transmitted over the active radio (ESP-NOW LR / SX1280 FLRC). It is not recorded, stored, or routed through our servers — we have none.</li>
-  <li><strong>Rear-camera video</strong> is recorded to the Helmet's microSD and previewed live on your phone over the local Wi-Fi link. We never see it.</li>
-  <li><strong>SOS broadcasts</strong> on the SX1262 868 MHz radio carry a short payload: helmet ID, last-known GPS, timestamp. They are received only by other Mukut helmets within range (15–20 km rural). We do not receive them.</li>
-</ul>
-
-<h2>7. Retention</h2>
-<ul>
-  <li><strong>Phone-side ride history:</strong> kept until you delete it. Long-press a ride → Delete, or Settings → Wipe all rides.</li>
-  <li><strong>Helmet microSD recordings:</strong> the Helmet auto-recycles oldest first when the card is full. You can pull, archive, or wipe at any time.</li>
-  <li><strong>App preferences and pairing keys:</strong> kept until you uninstall the App or hit Settings → Reset.</li>
-</ul>
-
-<h2>8. Your rights</h2>
-<p>Under the DPDP Act 2023 and applicable EU/UK rules, you have the right to:</p>
-<ul>
-  <li><strong>Access</strong> — everything the App stores about your rides is visible inside the App; tap Settings → Export to get a ZIP with your ride database, GPX tracks, and preferences.</li>
-  <li><strong>Correct</strong> — edit ride names and notes inline.</li>
-  <li><strong>Erase</strong> — Settings → Wipe all data clears the App's storage. Pop and reformat the microSD to clear the Helmet side.</li>
-  <li><strong>Port</strong> — the export ZIP contains GPX (rides), JSON (preferences), and MP4 (videos). Open standards, no lock-in.</li>
-  <li><strong>Withdraw consent</strong> — uninstall the App and unpair the Helmet. Nothing of yours sits on a server we control, because we do not run one.</li>
-  <li><strong>Grievance</strong> — write to <a href="mailto:privacy@mukutsenses.com">privacy@mukutsenses.com</a>. We acknowledge within 7 days and resolve within 30, per DPDP Section 13. The Data Protection Officer (DPO) is the contact above.</li>
-</ul>
-
-<h2>9. Children</h2>
-<p>The App is not directed at users under 18. Motorcycles in India require a valid licence, which is not issued before 16 (gearless) / 18 (geared). We do not knowingly collect data from minors. If you believe a minor has used the App, contact us and we will delete what we can confirm exists on your device — there is nothing on our end to delete.</p>
-
-<h2>10. Security posture, honestly</h2>
-<ul>
-  <li>All phone-to-Helmet traffic is on a local Wi-Fi link with WPA2-PSK and an app-layer per-pairing key.</li>
-  <li>The App is open-source-friendly: a SHA-256 of every released APK is published on our GitHub release page so you can verify what you installed.</li>
-  <li>No part of your data leaves the phone-Helmet pair through our infrastructure, because there is no infrastructure.</li>
-  <li>We are not perfect. If you find a vulnerability, mail <a href="mailto:security@mukutsenses.com">security@mukutsenses.com</a>. We will respond within 7 days.</li>
-</ul>
-
-<h2>11. International transfers</h2>
-<p>We do not transfer your data internationally because we do not collect it on a server. If you choose to use the v1.5+ user-supplied upload URL, you are the controller of that destination and any cross-border movement is governed by your own arrangement with that provider.</p>
-
-<h2>12. Changes to this policy</h2>
-<p>If we ever change a meaningful clause — what we collect, where it lives, who can see it — the App will show a plain-language diff and require you to tap <strong>I have read this</strong> before the affected feature unlocks. The previous version remains accessible from Settings → Privacy → Version history.</p>
-<p>Cosmetic edits (typos, link fixes) are silent and recorded in the version history.</p>
-
-<h2 id="data-deletion">13. Data deletion request</h2>
-<p>Mukut stores almost nothing on a server we control. Most "deletion" is a two-tap action you do yourself, on your own device. The full menu of deletion paths:</p>
-<ul>
-  <li><strong>In-app — phone storage (instant):</strong> Open the App → <em>Settings → Wipe all data</em>. Clears the ride database, pairing keys, app preferences, and cached map tiles. Effective immediately, no email needed.</li>
-  <li><strong>Per-ride deletion:</strong> Long-press any ride in <em>Ride history</em> → <em>Delete</em>. Clears that single ride's video reference + GPX track from the phone.</li>
-  <li><strong>Helmet microSD recordings:</strong> Pop the microSD via the tool-required door → reformat in any computer. The Helmet has no other persistent storage of recorded media.</li>
-  <li><strong>Full uninstall:</strong> Remove the App from Android Settings → Apps. Android wipes all of the App's data alongside the binary. There is nothing of yours on a Misc42 server to clean up after — we do not run one.</li>
-  <li><strong>Email request (formal):</strong> If you want a written confirmation of deletion (for your own compliance records, employer audit, etc.), email <a href="mailto:privacy@mukutsenses.com">privacy@mukutsenses.com</a> with the subject line <em>"Data deletion request"</em>. We acknowledge within 7 days and reply with a written confirmation within 30 days, per DPDP Act 2023 Section 13. The reply will explicitly list which deletion path applies to each data type — most will be the user-side actions above, because we genuinely have nothing on our end to erase.</li>
-</ul>
-<p>This section satisfies the Google Play data-deletion-request disclosure requirement.</p>
-
-<h2>14. Contact</h2>
-<ul>
-  <li>General privacy: <a href="mailto:privacy@mukutsenses.com">privacy@mukutsenses.com</a></li>
-  <li>Security disclosures: <a href="mailto:security@mukutsenses.com">security@mukutsenses.com</a></li>
-  <li>Grievance officer (DPDP s.13): same address; response in 7 days, resolution in 30.</li>
-  <li>Postal: <strong>[Registered address TBD]</strong>, India.</li>
-</ul>
-
-<footer>
-  <em>Mukut is built in India. The helmet runs on your wrist, not on someone else's server.</em><br><br>
-  <a href="./index.html">← back to landing</a>
+<footer class="foot">
+  <div class="wrap">
+    <nav>
+      <a href="https://misc42.github.io/misc42labs/">Misc42 Labs</a>
+      <a href="privacy.html" class="current">Privacy</a>
+      <a href="index.html#honest">Honest scope</a>
+    </nav>
+    <span>© 2026 Misc42 Labs · hand-built in India</span>
+  </div>
 </footer>
 
 </body>
